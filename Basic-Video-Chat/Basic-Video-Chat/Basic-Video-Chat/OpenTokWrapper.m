@@ -7,9 +7,9 @@
 
 #include "OpenTokWrapper.h"
 
-#define API_KEY "46888334"
-#define SESSION_ID "2_MX40Njg4ODMzNH5-MTY2ODQzNzgwNTkyMX5YQ1dtaFovK2JlRHk4Qmg0d0cxSEhNUG1-fg"
-#define TOKEN "T1==cGFydG5lcl9pZD00Njg4ODMzNCZzaWc9NmVlM2Y4NDJlNmE4MzY5ZDk5Yjg4MDc0ODFiMDE5MTNiMjg1Y2VmMzpzZXNzaW9uX2lkPTJfTVg0ME5qZzRPRE16Tkg1LU1UWTJPRFF6Tnpnd05Ua3lNWDVZUTFkdGFGb3ZLMkpsUkhrNFFtZzBkMGN4U0VoTlVHMS1mZyZjcmVhdGVfdGltZT0xNjY4NDM3ODIxJm5vbmNlPTAuNDQwNjY3MjY2MzcwMTQyMSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNjcxMDI5ODIwJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
+#define API_KEY ""
+#define SESSION_ID ""
+#define TOKEN ""
 
 typedef struct {
   otc_session *session;

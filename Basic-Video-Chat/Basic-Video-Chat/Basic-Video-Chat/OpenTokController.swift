@@ -35,7 +35,6 @@ class OpenTokController: NSObject, ObservableObject {
 extension OpenTokController: OpenTokWrapperDelegate {
   
   func onSessionConnected(_ sessionId: String!) {
-    print("onSessionConnected")
     DispatchQueue.main.async { [weak self] in
       self?.opentokIsConnected = true
       self?.publish()
@@ -47,7 +46,6 @@ extension OpenTokController: OpenTokWrapperDelegate {
   }
   
   func onPublisherRenderFrame(_ frame: OpaquePointer!) {
-    print("onPublisherRenderFrame")
     DispatchQueue.main.async { [weak self] in
         self?.publisherConnected = true
     }
