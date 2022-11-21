@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4548D8D32925A50000623A68 /* Basic_Video_ChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D8D22925A50000623A68 /* Basic_Video_ChatApp.swift */; };
+		4548D8D52925A50000623A68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D8D42925A50000623A68 /* ContentView.swift */; };
+		4548D8D72925A50200623A68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4548D8D62925A50200623A68 /* Assets.xcassets */; };
+		4548D8DA2925A50200623A68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4548D8D92925A50200623A68 /* Preview Assets.xcassets */; };
+		4548D8EB2925A8F600623A68 /* OpenTokWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4548D8E92925A8F600623A68 /* OpenTokWrapper.m */; };
+		4548D90F2926AFD700623A68 /* VideoRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4548D90E2926AFD700623A68 /* VideoRenderView.m */; };
+		4548D9122926B13400623A68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9112926B13300623A68 /* Foundation.framework */; };
+		4548D9142926B16800623A68 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9132926B16700623A68 /* AVFoundation.framework */; };
+		4548D9162926B16F00623A68 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9152926B16F00623A68 /* OpenGL.framework */; };
+		4548D9792927DE4300623A68 /* OpenTok.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9782927DE4300623A68 /* OpenTok.xcframework */; };
+		4548D97A2927DE4400623A68 /* OpenTok.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9782927DE4300623A68 /* OpenTok.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4548D97C2927E6C100623A68 /* PublisherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D97B2927E6C100623A68 /* PublisherView.swift */; };
+		4548D97E292BDB9300623A68 /* OpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D97D292BDB9300623A68 /* OpenTokController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4548D9252927B7E700623A68 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4548D97A2927DE4400623A68 /* OpenTok.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4548D8CF2925A50000623A68 /* Basic-Video-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4548D8D22925A50000623A68 /* Basic_Video_ChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic_Video_ChatApp.swift; sourceTree = "<group>"; };
+		4548D8D42925A50000623A68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4548D8D62925A50200623A68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4548D8D92925A50200623A68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4548D8DB2925A50200623A68 /* Basic_Video_Chat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Basic_Video_Chat.entitlements; sourceTree = "<group>"; };
+		4548D8E82925A8F600623A68 /* Basic-Video-Chat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basic-Video-Chat-Bridging-Header.h"; sourceTree = "<group>"; };
+		4548D8E92925A8F600623A68 /* OpenTokWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenTokWrapper.m; sourceTree = "<group>"; };
+		4548D8EA2925A8F600623A68 /* OpenTokWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenTokWrapper.h; sourceTree = "<group>"; };
+		4548D90E2926AFD700623A68 /* VideoRenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRenderView.m; sourceTree = "<group>"; };
+		4548D9102926B01700623A68 /* VideoRenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRenderView.h; sourceTree = "<group>"; };
+		4548D9112926B13300623A68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4548D9132926B16700623A68 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4548D9152926B16F00623A68 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		4548D9782927DE4300623A68 /* OpenTok.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTok.xcframework; sourceTree = "<group>"; };
+		4548D97B2927E6C100623A68 /* PublisherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherView.swift; sourceTree = "<group>"; };
+		4548D97D292BDB9300623A68 /* OpenTokController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTokController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4548D8CC2925A50000623A68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4548D9162926B16F00623A68 /* OpenGL.framework in Frameworks */,
+				4548D9122926B13400623A68 /* Foundation.framework in Frameworks */,
+				4548D9792927DE4300623A68 /* OpenTok.xcframework in Frameworks */,
+				4548D9142926B16800623A68 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4548D8C62925A50000623A68 = {
+			isa = PBXGroup;
+			children = (
+				4548D8D12925A50000623A68 /* Basic-Video-Chat */,
+				4548D8D02925A50000623A68 /* Products */,
+				4548D8E32925A6EF00623A68 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4548D8D02925A50000623A68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4548D8CF2925A50000623A68 /* Basic-Video-Chat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4548D8D12925A50000623A68 /* Basic-Video-Chat */ = {
+			isa = PBXGroup;
+			children = (
+				4548D8D22925A50000623A68 /* Basic_Video_ChatApp.swift */,
+				4548D8D42925A50000623A68 /* ContentView.swift */,
+				4548D97D292BDB9300623A68 /* OpenTokController.swift */,
+				4548D97B2927E6C100623A68 /* PublisherView.swift */,
+				4548D8D62925A50200623A68 /* Assets.xcassets */,
+				4548D8DB2925A50200623A68 /* Basic_Video_Chat.entitlements */,
+				4548D8D82925A50200623A68 /* Preview Content */,
+				4548D8E82925A8F600623A68 /* Basic-Video-Chat-Bridging-Header.h */,
+				4548D9102926B01700623A68 /* VideoRenderView.h */,
+				4548D90E2926AFD700623A68 /* VideoRenderView.m */,
+				4548D8EA2925A8F600623A68 /* OpenTokWrapper.h */,
+				4548D8E92925A8F600623A68 /* OpenTokWrapper.m */,
+			);
+			path = "Basic-Video-Chat";
+			sourceTree = "<group>";
+		};
+		4548D8D82925A50200623A68 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4548D8D92925A50200623A68 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4548D8E32925A6EF00623A68 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4548D9782927DE4300623A68 /* OpenTok.xcframework */,
+				4548D9152926B16F00623A68 /* OpenGL.framework */,
+				4548D9132926B16700623A68 /* AVFoundation.framework */,
+				4548D9112926B13300623A68 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4548D8CE2925A50000623A68 /* Basic-Video-Chat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4548D8DE2925A50200623A68 /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */;
+			buildPhases = (
+				4548D8CB2925A50000623A68 /* Sources */,
+				4548D8CC2925A50000623A68 /* Frameworks */,
+				4548D8CD2925A50000623A68 /* Resources */,
+				4548D9252927B7E700623A68 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Basic-Video-Chat";
+			productName = "Basic-Video-Chat";
+			productReference = 4548D8CF2925A50000623A68 /* Basic-Video-Chat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4548D8C72925A50000623A68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					4548D8CE2925A50000623A68 = {
+						CreatedOnToolsVersion = 14.0.1;
+						LastSwiftMigration = 1400;
+					};
+				};
+			};
+			buildConfigurationList = 4548D8CA2925A50000623A68 /* Build configuration list for PBXProject "Basic-Video-Chat" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4548D8C62925A50000623A68;
+			productRefGroup = 4548D8D02925A50000623A68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4548D8CE2925A50000623A68 /* Basic-Video-Chat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4548D8CD2925A50000623A68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4548D8DA2925A50200623A68 /* Preview Assets.xcassets in Resources */,
+				4548D8D72925A50200623A68 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4548D8CB2925A50000623A68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4548D8EB2925A8F600623A68 /* OpenTokWrapper.m in Sources */,
+				4548D90F2926AFD700623A68 /* VideoRenderView.m in Sources */,
+				4548D97E292BDB9300623A68 /* OpenTokController.swift in Sources */,
+				4548D8D52925A50000623A68 /* ContentView.swift in Sources */,
+				4548D97C2927E6C100623A68 /* PublisherView.swift in Sources */,
+				4548D8D32925A50000623A68 /* Basic_Video_ChatApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4548D8DC2925A50200623A68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4548D8DD2925A50200623A68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		4548D8DF2925A50200623A68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Basic-Video-Chat/Basic_Video_Chat.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Basic-Video-Chat/Preview Content\"";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Basic-Video-Chat",
+					"$(PROJECT_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) camera use";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_NAME) microphone use";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.macos.Basic-Video-Chat";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4548D8E02925A50200623A68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Basic-Video-Chat/Basic_Video_Chat.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Basic-Video-Chat/Preview Content\"";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Basic-Video-Chat",
+					"$(PROJECT_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) camera use";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_NAME) microphone use";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.macos.Basic-Video-Chat";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4548D8CA2925A50000623A68 /* Build configuration list for PBXProject "Basic-Video-Chat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4548D8DC2925A50200623A68 /* Debug */,
+				4548D8DD2925A50200623A68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4548D8DE2925A50200623A68 /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4548D8DF2925A50200623A68 /* Debug */,
+				4548D8E02925A50200623A68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4548D8C72925A50000623A68 /* Project object */;
+}
