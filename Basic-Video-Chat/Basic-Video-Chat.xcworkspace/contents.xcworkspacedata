@@ -4,4 +4,7 @@
    <FileRef
       location = "group:Basic-Video-Chat/Basic-Video-Chat.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>
