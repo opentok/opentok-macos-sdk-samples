@@ -1,0 +1,12 @@
+require_relative '../OpenTokSDKVersion'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :osx, MinMacOSVersion
+
+workspace 'Basic-Video-Chat-Metal.xcworkspace'
+
+target 'Basic-Video-Chat-Metal' do
+  project 'Basic-Video-Chat-Metal.xcodeproj'
+  use_frameworks! :linkage => :static
+  pod 'VonageClientSDKVideoMacOS', OpenTokSDKVersion
+end
