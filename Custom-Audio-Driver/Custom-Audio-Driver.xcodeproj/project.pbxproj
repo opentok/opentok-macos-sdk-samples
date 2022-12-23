@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C7525B22955D85600F7F732 /* OTMTLVideoRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C7525A72955D85600F7F732 /* OTMTLVideoRenderer.mm */; };
+		0C7525B32955D85600F7F732 /* OTDefaultAudioDevice-Mac.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7525A92955D85600F7F732 /* OTDefaultAudioDevice-Mac.m */; };
+		0C7525B42955D85600F7F732 /* OTBaseVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7525AE2955D85600F7F732 /* OTBaseVideoView.m */; };
+		0C7525B52955D85600F7F732 /* OTMTLVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7525AF2955D85600F7F732 /* OTMTLVideoView.m */; };
+		0C7525B62955D85600F7F732 /* OTAudioDeviceProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7525B12955D85600F7F732 /* OTAudioDeviceProxy.m */; };
+		0C7525B82955DA9200F7F732 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C7525B72955DA9200F7F732 /* Info.plist */; };
+		0C8ED11B2955D0280024DFCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8ED11A2955D0280024DFCD /* AppDelegate.m */; };
+		0C8ED11E2955D0280024DFCD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8ED11D2955D0280024DFCD /* ViewController.m */; };
+		0C8ED1202955D0280024DFCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C8ED11F2955D0280024DFCD /* Assets.xcassets */; };
+		0C8ED1232955D0280024DFCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C8ED1212955D0280024DFCD /* Main.storyboard */; };
+		0C8ED1252955D0280024DFCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8ED1242955D0280024DFCD /* main.m */; };
+		894B3AE783A5A0E9F4E6C54B /* Pods_Custom_Audio_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A90232DEFFB3FA71C8810209 /* Pods_Custom_Audio_Driver.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C7525A72955D85600F7F732 /* OTMTLVideoRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OTMTLVideoRenderer.mm; sourceTree = "<group>"; };
+		0C7525A82955D85600F7F732 /* OTDefaultAudioDevice-Mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OTDefaultAudioDevice-Mac.h"; sourceTree = "<group>"; };
+		0C7525A92955D85600F7F732 /* OTDefaultAudioDevice-Mac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OTDefaultAudioDevice-Mac.m"; sourceTree = "<group>"; };
+		0C7525AA2955D85600F7F732 /* OTAudioDeviceProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAudioDeviceProxy.h; sourceTree = "<group>"; };
+		0C7525AB2955D85600F7F732 /* OTBaseVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTBaseVideoView.h; sourceTree = "<group>"; };
+		0C7525AC2955D85600F7F732 /* OTAudioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAudioKit.h; sourceTree = "<group>"; };
+		0C7525AD2955D85600F7F732 /* OTMTLVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTMTLVideoView.h; sourceTree = "<group>"; };
+		0C7525AE2955D85600F7F732 /* OTBaseVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTBaseVideoView.m; sourceTree = "<group>"; };
+		0C7525AF2955D85600F7F732 /* OTMTLVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTMTLVideoView.m; sourceTree = "<group>"; };
+		0C7525B02955D85600F7F732 /* OTMTLVideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTMTLVideoRenderer.h; sourceTree = "<group>"; };
+		0C7525B12955D85600F7F732 /* OTAudioDeviceProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAudioDeviceProxy.m; sourceTree = "<group>"; };
+		0C7525B72955DA9200F7F732 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C8ED1162955D0280024DFCD /* Custom-Audio-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Audio-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C8ED1192955D0280024DFCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0C8ED11A2955D0280024DFCD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0C8ED11C2955D0280024DFCD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0C8ED11D2955D0280024DFCD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0C8ED11F2955D0280024DFCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C8ED1222955D0280024DFCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0C8ED1242955D0280024DFCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0C8ED1262955D0280024DFCD /* Custom_Audio_Driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Custom_Audio_Driver.entitlements; sourceTree = "<group>"; };
+		5148A3F824B49EEA6129BFEA /* Pods-Custom-Audio-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Audio-Driver.release.xcconfig"; path = "Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver.release.xcconfig"; sourceTree = "<group>"; };
+		A90232DEFFB3FA71C8810209 /* Pods_Custom_Audio_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Custom_Audio_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E98DCFD6EBC104E2F53EDF /* Pods-Custom-Audio-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Audio-Driver.debug.xcconfig"; path = "Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C8ED1132955D0280024DFCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				894B3AE783A5A0E9F4E6C54B /* Pods_Custom_Audio_Driver.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C8ED10D2955D0280024DFCD = {
+			isa = PBXGroup;
+			children = (
+				0C7525B72955DA9200F7F732 /* Info.plist */,
+				0C8ED1182955D0280024DFCD /* Custom-Audio-Driver */,
+				0C8ED1172955D0280024DFCD /* Products */,
+				16CCB9F704D9563E03A623F6 /* Pods */,
+				1F805ECB1118BED71E795D6A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0C8ED1172955D0280024DFCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C8ED1162955D0280024DFCD /* Custom-Audio-Driver.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0C8ED1182955D0280024DFCD /* Custom-Audio-Driver */ = {
+			isa = PBXGroup;
+			children = (
+				0C7525AA2955D85600F7F732 /* OTAudioDeviceProxy.h */,
+				0C7525B12955D85600F7F732 /* OTAudioDeviceProxy.m */,
+				0C7525AC2955D85600F7F732 /* OTAudioKit.h */,
+				0C7525AB2955D85600F7F732 /* OTBaseVideoView.h */,
+				0C7525AE2955D85600F7F732 /* OTBaseVideoView.m */,
+				0C7525A82955D85600F7F732 /* OTDefaultAudioDevice-Mac.h */,
+				0C7525A92955D85600F7F732 /* OTDefaultAudioDevice-Mac.m */,
+				0C7525B02955D85600F7F732 /* OTMTLVideoRenderer.h */,
+				0C7525A72955D85600F7F732 /* OTMTLVideoRenderer.mm */,
+				0C7525AD2955D85600F7F732 /* OTMTLVideoView.h */,
+				0C7525AF2955D85600F7F732 /* OTMTLVideoView.m */,
+				0C8ED1192955D0280024DFCD /* AppDelegate.h */,
+				0C8ED11A2955D0280024DFCD /* AppDelegate.m */,
+				0C8ED11C2955D0280024DFCD /* ViewController.h */,
+				0C8ED11D2955D0280024DFCD /* ViewController.m */,
+				0C8ED11F2955D0280024DFCD /* Assets.xcassets */,
+				0C8ED1212955D0280024DFCD /* Main.storyboard */,
+				0C8ED1242955D0280024DFCD /* main.m */,
+				0C8ED1262955D0280024DFCD /* Custom_Audio_Driver.entitlements */,
+			);
+			path = "Custom-Audio-Driver";
+			sourceTree = "<group>";
+		};
+		16CCB9F704D9563E03A623F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8E98DCFD6EBC104E2F53EDF /* Pods-Custom-Audio-Driver.debug.xcconfig */,
+				5148A3F824B49EEA6129BFEA /* Pods-Custom-Audio-Driver.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		1F805ECB1118BED71E795D6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A90232DEFFB3FA71C8810209 /* Pods_Custom_Audio_Driver.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0C8ED1152955D0280024DFCD /* Custom-Audio-Driver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C8ED1292955D0280024DFCD /* Build configuration list for PBXNativeTarget "Custom-Audio-Driver" */;
+			buildPhases = (
+				F2954919F98F528812336B2B /* [CP] Check Pods Manifest.lock */,
+				0C8ED1122955D0280024DFCD /* Sources */,
+				0C8ED1132955D0280024DFCD /* Frameworks */,
+				0C8ED1142955D0280024DFCD /* Resources */,
+				113AE7B8ED280FE451C08449 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Custom-Audio-Driver";
+			productName = "Custom-Audio-Driver";
+			productReference = 0C8ED1162955D0280024DFCD /* Custom-Audio-Driver.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C8ED10E2955D0280024DFCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					0C8ED1152955D0280024DFCD = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 0C8ED1112955D0280024DFCD /* Build configuration list for PBXProject "Custom-Audio-Driver" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0C8ED10D2955D0280024DFCD;
+			productRefGroup = 0C8ED1172955D0280024DFCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C8ED1152955D0280024DFCD /* Custom-Audio-Driver */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0C8ED1142955D0280024DFCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C8ED1202955D0280024DFCD /* Assets.xcassets in Resources */,
+				0C8ED1232955D0280024DFCD /* Main.storyboard in Resources */,
+				0C7525B82955DA9200F7F732 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		113AE7B8ED280FE451C08449 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2954919F98F528812336B2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Custom-Audio-Driver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C8ED1122955D0280024DFCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C8ED11E2955D0280024DFCD /* ViewController.m in Sources */,
+				0C8ED1252955D0280024DFCD /* main.m in Sources */,
+				0C7525B32955D85600F7F732 /* OTDefaultAudioDevice-Mac.m in Sources */,
+				0C7525B52955D85600F7F732 /* OTMTLVideoView.m in Sources */,
+				0C8ED11B2955D0280024DFCD /* AppDelegate.m in Sources */,
+				0C7525B42955D85600F7F732 /* OTBaseVideoView.m in Sources */,
+				0C7525B62955D85600F7F732 /* OTAudioDeviceProxy.m in Sources */,
+				0C7525B22955D85600F7F732 /* OTMTLVideoRenderer.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0C8ED1212955D0280024DFCD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C8ED1222955D0280024DFCD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0C8ED1272955D0280024DFCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0C8ED1282955D0280024DFCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		0C8ED12A2955D0280024DFCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8E98DCFD6EBC104E2F53EDF /* Pods-Custom-Audio-Driver.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Custom-Audio-Driver/Custom_Audio_Driver.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E37FZSUGQP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Audio-Driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		0C8ED12B2955D0280024DFCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5148A3F824B49EEA6129BFEA /* Pods-Custom-Audio-Driver.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Custom-Audio-Driver/Custom_Audio_Driver.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E37FZSUGQP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Audio-Driver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C8ED1112955D0280024DFCD /* Build configuration list for PBXProject "Custom-Audio-Driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C8ED1272955D0280024DFCD /* Debug */,
+				0C8ED1282955D0280024DFCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C8ED1292955D0280024DFCD /* Build configuration list for PBXNativeTarget "Custom-Audio-Driver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C8ED12A2955D0280024DFCD /* Debug */,
+				0C8ED12B2955D0280024DFCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0C8ED10E2955D0280024DFCD /* Project object */;
+}
