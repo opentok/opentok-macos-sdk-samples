@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A5B6B34BE56DD42695924C6 /* Pods_Simple_Multiparty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82F7BC61E3A551281CDC1CB /* Pods_Simple_Multiparty.framework */; };
+		CA5A6BF829660E300023AE3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6BF729660E300023AE3D /* AppDelegate.m */; };
+		CA5A6BFB29660E300023AE3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6BFA29660E300023AE3D /* ViewController.m */; };
+		CA5A6BFD29660E300023AE3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA5A6BFC29660E300023AE3D /* Assets.xcassets */; };
+		CA5A6C0029660E300023AE3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5A6BFE29660E300023AE3D /* Main.storyboard */; };
+		CA5A6C0229660E300023AE3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6C0129660E300023AE3D /* main.m */; };
+		CA5A6C0F29660F400023AE3D /* OTMTLVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6C0929660F400023AE3D /* OTMTLVideoView.m */; };
+		CA5A6C1029660F400023AE3D /* OTMTLVideoRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6C0C29660F400023AE3D /* OTMTLVideoRenderer.mm */; };
+		CA5A6C1129660F400023AE3D /* OTBaseVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6C0D29660F400023AE3D /* OTBaseVideoView.m */; };
+		CA5A6C1929672E890023AE3D /* OTSubscriberWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5A6C1829672E890023AE3D /* OTSubscriberWindow.m */; };
+		CA5A6C1C2967301C0023AE3D /* OTSubscriberWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5A6C1B2967301C0023AE3D /* OTSubscriberWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		24ABF1CC68F4299ABBFD71F1 /* Pods-Simple-Multiparty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.debug.xcconfig"; path = "Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.debug.xcconfig"; sourceTree = "<group>"; };
+		BEC2E5D01EC1316A197D308B /* Pods-Simple-Multiparty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.release.xcconfig"; path = "Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.release.xcconfig"; sourceTree = "<group>"; };
+		CA5A6BF329660E300023AE3D /* Simple-Multiparty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple-Multiparty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5A6BF629660E300023AE3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CA5A6BF729660E300023AE3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CA5A6BF929660E300023AE3D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CA5A6BFA29660E300023AE3D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CA5A6BFC29660E300023AE3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CA5A6BFF29660E300023AE3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CA5A6C0129660E300023AE3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CA5A6C0329660E300023AE3D /* Simple_Multiparty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Simple_Multiparty.entitlements; sourceTree = "<group>"; };
+		CA5A6C0929660F400023AE3D /* OTMTLVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTMTLVideoView.m; sourceTree = "<group>"; };
+		CA5A6C0A29660F400023AE3D /* OTBaseVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTBaseVideoView.h; sourceTree = "<group>"; };
+		CA5A6C0B29660F400023AE3D /* OTMTLVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTMTLVideoView.h; sourceTree = "<group>"; };
+		CA5A6C0C29660F400023AE3D /* OTMTLVideoRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OTMTLVideoRenderer.mm; sourceTree = "<group>"; };
+		CA5A6C0D29660F400023AE3D /* OTBaseVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTBaseVideoView.m; sourceTree = "<group>"; };
+		CA5A6C0E29660F400023AE3D /* OTMTLVideoRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTMTLVideoRenderer.h; sourceTree = "<group>"; };
+		CA5A6C1829672E890023AE3D /* OTSubscriberWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OTSubscriberWindow.m; sourceTree = "<group>"; };
+		CA5A6C1A29672E990023AE3D /* OTSubscriberWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTSubscriberWindow.h; sourceTree = "<group>"; };
+		CA5A6C1B2967301C0023AE3D /* OTSubscriberWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTSubscriberWindow.xib; sourceTree = "<group>"; };
+		E82F7BC61E3A551281CDC1CB /* Pods_Simple_Multiparty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Multiparty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA5A6BF029660E300023AE3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A5B6B34BE56DD42695924C6 /* Pods_Simple_Multiparty.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA5A6BEA29660E300023AE3D = {
+			isa = PBXGroup;
+			children = (
+				CA5A6BF529660E300023AE3D /* Simple-Multiparty */,
+				CA5A6BF429660E300023AE3D /* Products */,
+				F304FF7D47330850122CBB00 /* Pods */,
+				CDDF3565773EB7907477DDEA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CA5A6BF429660E300023AE3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA5A6BF329660E300023AE3D /* Simple-Multiparty.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA5A6BF529660E300023AE3D /* Simple-Multiparty */ = {
+			isa = PBXGroup;
+			children = (
+				CA5A6C0A29660F400023AE3D /* OTBaseVideoView.h */,
+				CA5A6C0D29660F400023AE3D /* OTBaseVideoView.m */,
+				CA5A6C0E29660F400023AE3D /* OTMTLVideoRenderer.h */,
+				CA5A6C0C29660F400023AE3D /* OTMTLVideoRenderer.mm */,
+				CA5A6C0B29660F400023AE3D /* OTMTLVideoView.h */,
+				CA5A6C0929660F400023AE3D /* OTMTLVideoView.m */,
+				CA5A6C1A29672E990023AE3D /* OTSubscriberWindow.h */,
+				CA5A6C1829672E890023AE3D /* OTSubscriberWindow.m */,
+				CA5A6C1B2967301C0023AE3D /* OTSubscriberWindow.xib */,
+				CA5A6BF629660E300023AE3D /* AppDelegate.h */,
+				CA5A6BF729660E300023AE3D /* AppDelegate.m */,
+				CA5A6BF929660E300023AE3D /* ViewController.h */,
+				CA5A6BFA29660E300023AE3D /* ViewController.m */,
+				CA5A6BFC29660E300023AE3D /* Assets.xcassets */,
+				CA5A6BFE29660E300023AE3D /* Main.storyboard */,
+				CA5A6C0129660E300023AE3D /* main.m */,
+				CA5A6C0329660E300023AE3D /* Simple_Multiparty.entitlements */,
+			);
+			path = "Simple-Multiparty";
+			sourceTree = "<group>";
+		};
+		CDDF3565773EB7907477DDEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E82F7BC61E3A551281CDC1CB /* Pods_Simple_Multiparty.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F304FF7D47330850122CBB00 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				24ABF1CC68F4299ABBFD71F1 /* Pods-Simple-Multiparty.debug.xcconfig */,
+				BEC2E5D01EC1316A197D308B /* Pods-Simple-Multiparty.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CA5A6BF229660E300023AE3D /* Simple-Multiparty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA5A6C0629660E300023AE3D /* Build configuration list for PBXNativeTarget "Simple-Multiparty" */;
+			buildPhases = (
+				A74213A8A110E4E6C8AF864A /* [CP] Check Pods Manifest.lock */,
+				CA5A6BEF29660E300023AE3D /* Sources */,
+				CA5A6BF029660E300023AE3D /* Frameworks */,
+				CA5A6BF129660E300023AE3D /* Resources */,
+				AD8D9E12A0CDF76EA91655E3 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Simple-Multiparty";
+			productName = "Simple-Multiparty";
+			productReference = CA5A6BF329660E300023AE3D /* Simple-Multiparty.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA5A6BEB29660E300023AE3D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					CA5A6BF229660E300023AE3D = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = CA5A6BEE29660E300023AE3D /* Build configuration list for PBXProject "Simple-Multiparty" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CA5A6BEA29660E300023AE3D;
+			productRefGroup = CA5A6BF429660E300023AE3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA5A6BF229660E300023AE3D /* Simple-Multiparty */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA5A6BF129660E300023AE3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA5A6C1C2967301C0023AE3D /* OTSubscriberWindow.xib in Resources */,
+				CA5A6BFD29660E300023AE3D /* Assets.xcassets in Resources */,
+				CA5A6C0029660E300023AE3D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A74213A8A110E4E6C8AF864A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Simple-Multiparty-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD8D9E12A0CDF76EA91655E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CA5A6BEF29660E300023AE3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA5A6BFB29660E300023AE3D /* ViewController.m in Sources */,
+				CA5A6C0F29660F400023AE3D /* OTMTLVideoView.m in Sources */,
+				CA5A6C0229660E300023AE3D /* main.m in Sources */,
+				CA5A6BF829660E300023AE3D /* AppDelegate.m in Sources */,
+				CA5A6C1129660F400023AE3D /* OTBaseVideoView.m in Sources */,
+				CA5A6C1029660F400023AE3D /* OTMTLVideoRenderer.mm in Sources */,
+				CA5A6C1929672E890023AE3D /* OTSubscriberWindow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CA5A6BFE29660E300023AE3D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA5A6BFF29660E300023AE3D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CA5A6C0429660E300023AE3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CA5A6C0529660E300023AE3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CA5A6C0729660E300023AE3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24ABF1CC68F4299ABBFD71F1 /* Pods-Simple-Multiparty.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Simple-Multiparty/Simple_Multiparty.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow permission to use camera";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow permission to use mic";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.macos.Simple-Multiparty";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		CA5A6C0829660E300023AE3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEC2E5D01EC1316A197D308B /* Pods-Simple-Multiparty.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Simple-Multiparty/Simple_Multiparty.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow permission to use camera";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow permission to use mic";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.macos.Simple-Multiparty";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CA5A6BEE29660E300023AE3D /* Build configuration list for PBXProject "Simple-Multiparty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA5A6C0429660E300023AE3D /* Debug */,
+				CA5A6C0529660E300023AE3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA5A6C0629660E300023AE3D /* Build configuration list for PBXNativeTarget "Simple-Multiparty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA5A6C0729660E300023AE3D /* Debug */,
+				CA5A6C0829660E300023AE3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CA5A6BEB29660E300023AE3D /* Project object */;
+}
