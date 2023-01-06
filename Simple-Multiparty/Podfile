@@ -1,0 +1,12 @@
+require_relative '../OpenTokSDKVersion'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :osx, MinMacOSVersion
+
+workspace 'Simple-Multiparty.xcworkspace'
+
+target 'Simple-Multiparty' do
+  project 'Simple-Multiparty/Simple-Multiparty.xcodeproj'
+  use_frameworks! :linkage => :static
+  pod 'VonageClientSDKVideoMacOS', OpenTokSDKVersion
+end
