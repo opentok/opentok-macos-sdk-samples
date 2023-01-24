@@ -1,0 +1,12 @@
+require_relative '../OpenTokSDKVersion'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :osx, MinMacOSVersion
+
+workspace 'Screen-Sharing.xcworkspace'
+
+target 'Screen-Sharing' do
+  project 'Screen-Sharing/Screen-Sharing.xcodeproj'
+  use_frameworks! :linkage => :static
+  pod 'VonageClientSDKVideoMacOS', OpenTokSDKVersion
+end

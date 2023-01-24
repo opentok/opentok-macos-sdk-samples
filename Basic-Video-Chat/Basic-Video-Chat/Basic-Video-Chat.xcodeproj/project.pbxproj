@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,7 @@
 		4548D9122926B13400623A68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9112926B13300623A68 /* Foundation.framework */; };
 		4548D9142926B16800623A68 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9132926B16700623A68 /* AVFoundation.framework */; };
 		4548D9162926B16F00623A68 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4548D9152926B16F00623A68 /* OpenGL.framework */; };
-		4548D97C2927E6C100623A68 /* PublisherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D97B2927E6C100623A68 /* PublisherView.swift */; };
+		4548D97C2927E6C100623A68 /* OpenTokView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D97B2927E6C100623A68 /* OpenTokView.swift */; };
 		4548D97E292BDB9300623A68 /* OpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4548D97D292BDB9300623A68 /* OpenTokController.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 		4548D9112926B13300623A68 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4548D9132926B16700623A68 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4548D9152926B16F00623A68 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		4548D97B2927E6C100623A68 /* PublisherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherView.swift; sourceTree = "<group>"; };
+		4548D97B2927E6C100623A68 /* OpenTokView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTokView.swift; sourceTree = "<group>"; };
 		4548D97D292BDB9300623A68 /* OpenTokController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTokController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +89,7 @@
 				4548D8D22925A50000623A68 /* Basic_Video_ChatApp.swift */,
 				4548D8D42925A50000623A68 /* ContentView.swift */,
 				4548D97D292BDB9300623A68 /* OpenTokController.swift */,
-				4548D97B2927E6C100623A68 /* PublisherView.swift */,
+				4548D97B2927E6C100623A68 /* OpenTokView.swift */,
 				4548D8D62925A50200623A68 /* Assets.xcassets */,
 				4548D8DB2925A50200623A68 /* Basic_Video_Chat.entitlements */,
 				4548D8D82925A50200623A68 /* Preview Content */,
@@ -196,7 +196,7 @@
 				4548D90F2926AFD700623A68 /* VideoRenderView.m in Sources */,
 				4548D97E292BDB9300623A68 /* OpenTokController.swift in Sources */,
 				4548D8D52925A50000623A68 /* ContentView.swift in Sources */,
-				4548D97C2927E6C100623A68 /* PublisherView.swift in Sources */,
+				4548D97C2927E6C100623A68 /* OpenTokView.swift in Sources */,
 				4548D8D32925A50000623A68 /* Basic_Video_ChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CABA04322948E45A000FB125 /* Screen_SharingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA04312948E45A000FB125 /* Screen_SharingApp.swift */; };
+		CABA04342948E45A000FB125 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA04332948E45A000FB125 /* ContentView.swift */; };
+		CABA04362948E45B000FB125 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA04352948E45B000FB125 /* Assets.xcassets */; };
+		CABA04392948E45B000FB125 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABA04382948E45B000FB125 /* Preview Assets.xcassets */; };
+		CABA04422948E4B7000FB125 /* ScreenCaptureKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA04412948E4B7000FB125 /* ScreenCaptureKit.framework */; };
+		CABA0448294A18FD000FB125 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA0447294A18FD000FB125 /* AVFoundation.framework */; };
+		CABA044A294A1904000FB125 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA0449294A1904000FB125 /* Foundation.framework */; };
+		CABA0452294A19CD000FB125 /* OpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA044C294A19CC000FB125 /* OpenTokController.swift */; };
+		CABA0454294A19CD000FB125 /* OpenTokWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CABA0450294A19CD000FB125 /* OpenTokWrapper.m */; };
+		CABA0455294A19CD000FB125 /* OpenTokView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA0451294A19CD000FB125 /* OpenTokView.swift */; };
+		CABA0457294A1D25000FB125 /* CapturedFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA0456294A1D25000FB125 /* CapturedFrame.swift */; };
+		CABA0459294A1D49000FB125 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA0458294A1D49000FB125 /* Combine.framework */; };
+		CABA045B294A1D58000FB125 /* AVFAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA045A294A1D58000FB125 /* AVFAudio.framework */; };
+		CABA045D294A1D5C000FB125 /* OSLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA045C294A1D5C000FB125 /* OSLog.framework */; };
+		CABA0461294A1D95000FB125 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA0460294A1D95000FB125 /* Accelerate.framework */; };
+		CABA0465294A1DF0000FB125 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA0464294A1DF0000FB125 /* ScreenRecorder.swift */; };
+		CABA0467294A1E5B000FB125 /* CapturePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABA0466294A1E5B000FB125 /* CapturePreview.swift */; };
+		CABA0469294A1E64000FB125 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABA0468294A1E64000FB125 /* SwiftUI.framework */; };
+		CAD8F76D29535E3700C1416C /* VideoRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD8F76C29535E3700C1416C /* VideoRenderView.m */; };
+		CAD8F77E2953741200C1416C /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8F77D2953740900C1416C /* libc++.1.tbd */; };
+		CAD8F78629538BBD00C1416C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8F78529538BBC00C1416C /* CoreMedia.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CABA0446294A18CB000FB125 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CABA042E2948E45A000FB125 /* Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CABA04312948E45A000FB125 /* Screen_SharingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen_SharingApp.swift; sourceTree = "<group>"; };
+		CABA04332948E45A000FB125 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CABA04352948E45B000FB125 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CABA04382948E45B000FB125 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CABA043A2948E45B000FB125 /* Screen_Sharing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Screen_Sharing.entitlements; sourceTree = "<group>"; };
+		CABA04412948E4B7000FB125 /* ScreenCaptureKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenCaptureKit.framework; path = System/Library/Frameworks/ScreenCaptureKit.framework; sourceTree = SDKROOT; };
+		CABA0447294A18FD000FB125 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CABA0449294A1904000FB125 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CABA044B294A19CC000FB125 /* Screen-Sharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Screen-Sharing-Bridging-Header.h"; sourceTree = "<group>"; };
+		CABA044C294A19CC000FB125 /* OpenTokController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokController.swift; sourceTree = "<group>"; };
+		CABA044D294A19CD000FB125 /* OpenTokWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenTokWrapper.h; sourceTree = "<group>"; };
+		CABA0450294A19CD000FB125 /* OpenTokWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenTokWrapper.m; sourceTree = "<group>"; };
+		CABA0451294A19CD000FB125 /* OpenTokView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokView.swift; sourceTree = "<group>"; };
+		CABA0456294A1D25000FB125 /* CapturedFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedFrame.swift; sourceTree = "<group>"; };
+		CABA0458294A1D49000FB125 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
+		CABA045A294A1D58000FB125 /* AVFAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFAudio.framework; path = System/Library/Frameworks/AVFAudio.framework; sourceTree = SDKROOT; };
+		CABA045C294A1D5C000FB125 /* OSLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSLog.framework; path = System/Library/Frameworks/OSLog.framework; sourceTree = SDKROOT; };
+		CABA0460294A1D95000FB125 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		CABA0464294A1DF0000FB125 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
+		CABA0466294A1E5B000FB125 /* CapturePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePreview.swift; sourceTree = "<group>"; };
+		CABA0468294A1E64000FB125 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		CAD8F76B29535E3700C1416C /* VideoRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRenderView.h; sourceTree = "<group>"; };
+		CAD8F76C29535E3700C1416C /* VideoRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRenderView.m; sourceTree = "<group>"; };
+		CAD8F77D2953740900C1416C /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		CAD8F78529538BBC00C1416C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CABA042B2948E45A000FB125 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CABA0459294A1D49000FB125 /* Combine.framework in Frameworks */,
+				CAD8F78629538BBD00C1416C /* CoreMedia.framework in Frameworks */,
+				CABA0469294A1E64000FB125 /* SwiftUI.framework in Frameworks */,
+				CABA0461294A1D95000FB125 /* Accelerate.framework in Frameworks */,
+				CABA04422948E4B7000FB125 /* ScreenCaptureKit.framework in Frameworks */,
+				CABA045B294A1D58000FB125 /* AVFAudio.framework in Frameworks */,
+				CABA0448294A18FD000FB125 /* AVFoundation.framework in Frameworks */,
+				CABA045D294A1D5C000FB125 /* OSLog.framework in Frameworks */,
+				CABA044A294A1904000FB125 /* Foundation.framework in Frameworks */,
+				CAD8F77E2953741200C1416C /* libc++.1.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CABA04252948E45A000FB125 = {
+			isa = PBXGroup;
+			children = (
+				CABA04302948E45A000FB125 /* Screen-Sharing */,
+				CABA042F2948E45A000FB125 /* Products */,
+				CABA04402948E4B7000FB125 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CABA042F2948E45A000FB125 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CABA042E2948E45A000FB125 /* Screen-Sharing.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CABA04302948E45A000FB125 /* Screen-Sharing */ = {
+			isa = PBXGroup;
+			children = (
+				CAD8F76B29535E3700C1416C /* VideoRenderView.h */,
+				CAD8F76C29535E3700C1416C /* VideoRenderView.m */,
+				CABA044D294A19CD000FB125 /* OpenTokWrapper.h */,
+				CABA0450294A19CD000FB125 /* OpenTokWrapper.m */,
+				CABA044C294A19CC000FB125 /* OpenTokController.swift */,
+				CABA0451294A19CD000FB125 /* OpenTokView.swift */,
+				CABA04312948E45A000FB125 /* Screen_SharingApp.swift */,
+				CABA04332948E45A000FB125 /* ContentView.swift */,
+				CABA04352948E45B000FB125 /* Assets.xcassets */,
+				CABA043A2948E45B000FB125 /* Screen_Sharing.entitlements */,
+				CABA04372948E45B000FB125 /* Preview Content */,
+				CABA044B294A19CC000FB125 /* Screen-Sharing-Bridging-Header.h */,
+				CABA0456294A1D25000FB125 /* CapturedFrame.swift */,
+				CABA0464294A1DF0000FB125 /* ScreenRecorder.swift */,
+				CABA0466294A1E5B000FB125 /* CapturePreview.swift */,
+			);
+			path = "Screen-Sharing";
+			sourceTree = "<group>";
+		};
+		CABA04372948E45B000FB125 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CABA04382948E45B000FB125 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CABA04402948E4B7000FB125 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAD8F78529538BBC00C1416C /* CoreMedia.framework */,
+				CAD8F77D2953740900C1416C /* libc++.1.tbd */,
+				CABA0468294A1E64000FB125 /* SwiftUI.framework */,
+				CABA0460294A1D95000FB125 /* Accelerate.framework */,
+				CABA045C294A1D5C000FB125 /* OSLog.framework */,
+				CABA045A294A1D58000FB125 /* AVFAudio.framework */,
+				CABA0458294A1D49000FB125 /* Combine.framework */,
+				CABA0449294A1904000FB125 /* Foundation.framework */,
+				CABA0447294A18FD000FB125 /* AVFoundation.framework */,
+				CABA04412948E4B7000FB125 /* ScreenCaptureKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CABA042D2948E45A000FB125 /* Screen-Sharing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CABA043D2948E45B000FB125 /* Build configuration list for PBXNativeTarget "Screen-Sharing" */;
+			buildPhases = (
+				CABA042A2948E45A000FB125 /* Sources */,
+				CABA042B2948E45A000FB125 /* Frameworks */,
+				CABA042C2948E45A000FB125 /* Resources */,
+				CABA0446294A18CB000FB125 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Screen-Sharing";
+			productName = "Screen-Sharing";
+			productReference = CABA042E2948E45A000FB125 /* Screen-Sharing.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CABA04262948E45A000FB125 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					CABA042D2948E45A000FB125 = {
+						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
+					};
+				};
+			};
+			buildConfigurationList = CABA04292948E45A000FB125 /* Build configuration list for PBXProject "Screen-Sharing" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CABA04252948E45A000FB125;
+			productRefGroup = CABA042F2948E45A000FB125 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CABA042D2948E45A000FB125 /* Screen-Sharing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CABA042C2948E45A000FB125 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CABA04392948E45B000FB125 /* Preview Assets.xcassets in Resources */,
+				CABA04362948E45B000FB125 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CABA042A2948E45A000FB125 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CABA0454294A19CD000FB125 /* OpenTokWrapper.m in Sources */,
+				CABA04342948E45A000FB125 /* ContentView.swift in Sources */,
+				CAD8F76D29535E3700C1416C /* VideoRenderView.m in Sources */,
+				CABA04322948E45A000FB125 /* Screen_SharingApp.swift in Sources */,
+				CABA0467294A1E5B000FB125 /* CapturePreview.swift in Sources */,
+				CABA0452294A19CD000FB125 /* OpenTokController.swift in Sources */,
+				CABA0457294A1D25000FB125 /* CapturedFrame.swift in Sources */,
+				CABA0455294A19CD000FB125 /* OpenTokView.swift in Sources */,
+				CABA0465294A1DF0000FB125 /* ScreenRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CABA043B2948E45B000FB125 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CABA043C2948E45B000FB125 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		CABA043E2948E45B000FB125 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Screen-Sharing/Screen_Sharing.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Screen-Sharing/Preview Content\"";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Screen-Sharing camera use";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Screen-Sharing microphone use";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.macos.Screen-Sharing";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Screen-Sharing/Screen-Sharing-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CABA043F2948E45B000FB125 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Screen-Sharing/Screen_Sharing.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Screen-Sharing/Preview Content\"";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Screen-Sharing camera use";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Screen-Sharing microphone use";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.macos.Screen-Sharing";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Screen-Sharing/Screen-Sharing-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CABA04292948E45A000FB125 /* Build configuration list for PBXProject "Screen-Sharing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CABA043B2948E45B000FB125 /* Debug */,
+				CABA043C2948E45B000FB125 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CABA043D2948E45B000FB125 /* Build configuration list for PBXNativeTarget "Screen-Sharing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CABA043E2948E45B000FB125 /* Debug */,
+				CABA043F2948E45B000FB125 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CABA04262948E45A000FB125 /* Project object */;
+}
