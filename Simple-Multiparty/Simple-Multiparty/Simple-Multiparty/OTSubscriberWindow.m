@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <opentok/opentok.h>
 
-otc_subscriber *subscriber = NULL;
-
-@interface OTSubscriberWindow ()
+@interface OTSubscriberWindow () {
+    otc_subscriber *subscriber;
+}
 
 @end
 
@@ -22,7 +22,7 @@ otc_subscriber *subscriber = NULL;
 - (void)windowDidLoad {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    subscriber = NULL;
 }
 
 - (void)setSubscriber:(otc_subscriber *)subs {

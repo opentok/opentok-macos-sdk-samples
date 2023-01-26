@@ -199,7 +199,7 @@ void session_on_stream_received(otc_session *session, void *user_data, const otc
         callbacks.on_video_disabled = subscriber_on_video_disabled;
         callbacks.on_video_enabled = subscriber_on_video_enabled;
         callbacks.user_data = (__bridge void*)subscriberWindow.videoView;
-        otc_subscriber *subscriber= otc_subscriber_new(strcpy, &callbacks);
+        otc_subscriber *subscriber = otc_subscriber_new(strcpy, &callbacks);
         otc_session_subscribe(session, subscriber);
         
         [subscriberWindow setSubscriber:subscriber];
@@ -220,13 +220,11 @@ void session_on_stream_dropped(otc_session *session, void *user_data, const otc_
     dispatch_async(dispatch_get_main_queue(), ^{
         int indexToDelete = -1;
         const char* stream_id = otc_stream_get_id(strcpy);
-        NSLog(@"session_on_stream_dropped -> stream_id=%s", stream_id);
-        for (int i = 0; i <= [vc->arraySubscribersView count]; i++) {
+        for (int i=0; i<[vc->arraySubscribersView count]; i++) {
             OTSubscriberWindow *subscriberWindow = [vc->arraySubscribersView objectAtIndex:i];
             otc_subscriber *subscriber = [subscriberWindow getSubscriber];
             otc_stream *sub_stream = otc_subscriber_get_stream(subscriber);
             const char* sub_stream_id = otc_stream_get_id(sub_stream);
-            NSLog(@"sub_stream_id=%s", sub_stream_id);
             if (strcmp(sub_stream_id, stream_id) == 0) {
                 indexToDelete = i;
                 break;
@@ -235,9 +233,6 @@ void session_on_stream_dropped(otc_session *session, void *user_data, const otc_
         if (indexToDelete > -1) {
             OTSubscriberWindow *subscriberWindow = [vc->arraySubscribersView objectAtIndex:indexToDelete];
             otc_subscriber *subscriber_to_delete = [subscriberWindow getSubscriber];
-            otc_stream *sub_stream_to_delete = otc_subscriber_get_stream(subscriber_to_delete);
-            const char* sub_stream_id_to_delete = otc_stream_get_id(sub_stream_to_delete);
-            NSLog(@"sub_stream_id_to_delete=%s", sub_stream_id_to_delete);
             otc_session_unsubscribe(session, subscriber_to_delete);
             [subscriberWindow close];
             [vc->arraySubscribersView removeObjectAtIndex:indexToDelete];
@@ -291,13 +286,6 @@ void publisher_on_stream_destroyed(otc_publisher *publisher, void *user_data, co
 static void publisher_on_render_frame(otc_publisher *publisher, void *user_data, const otc_video_frame *frame) {
     OTMTLVideoView *videoView = (__bridge OTMTLVideoView *)user_data;
     [videoView renderVideoFrame:(otc_video_frame*)frame];
-    //SessionData *session_data = (SessionData *)user_data;
-    //ViewController *vc = (__bridge ViewController *)session_data->view_controller;
-    //otc_video_frame *copy_frame = otc_video_frame_copy(frame);
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [vc->pubView renderVideoFrame:(otc_video_frame*)copy_frame];
-    //    otc_video_frame_delete(copy_frame);
-    //});
 }
 
 static void subscriber_on_video_data_received(otc_subscriber* subscriber, void* user_data) {
@@ -305,24 +293,8 @@ static void subscriber_on_video_data_received(otc_subscriber* subscriber, void* 
 }
 
 static void subscriber_on_render_frame(otc_subscriber *subscriber, void *user_data, const otc_video_frame *frame) {
-    
-    
     OTMTLVideoView *videoView = (__bridge OTMTLVideoView *)user_data;
     [videoView renderVideoFrame:(otc_video_frame*)frame];
-    //SessionData *session_data = (SessionData *)user_data;
-    //ViewController *vc = (__bridge ViewController *)session_data->view_controller;
-    //otc_video_frame *copy_frame = otc_video_frame_copy(frame);
-    //const char*subscriber_id = otc_subscriber_get_subscriber_id(subscriber);
-    //dispatch_async(dispatch_get_main_queue(), ^{
-        //for (OTSubscriberWindow *subscriberWindow in vc->arraySubscribersView) {
-            //otc_subscriber *oldSubscriber = [subscriberWindow getSubscriber];
-            //if (strcmp(subscriber_id, otc_subscriber_get_subscriber_id(oldSubscriber)) == 0) {
-                //[subscriberWindow.videoView renderVideoFrame:(otc_video_frame*)copy_frame];
-            //}
-        //}
-        //otc_video_frame_delete(copy_frame);
-    //});
-    
 }
 
 static void subscriber_on_video_disabled(otc_subscriber* subscriber, void *user_data, enum otc_video_reason reason) {
