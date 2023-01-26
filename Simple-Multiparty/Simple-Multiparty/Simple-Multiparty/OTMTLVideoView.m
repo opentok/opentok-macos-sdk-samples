@@ -90,8 +90,8 @@
 
     // Listen to application state in order to stop rendering while in background and
     // resume in foreground
-    NSNotificationCenter* notificationCenter =
-    [NSNotificationCenter defaultCenter];
+    NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
     [notificationCenter
      addObserver:self
      selector:@selector(willResignActive)
@@ -119,10 +119,10 @@
 #pragma mark - Private Methods
 
 - (void)didBecomeActive {
-   if (_renderingEnabled)
-   {
+    if (_renderingEnabled)
+    {
         _mtkView.paused = NO;
-   }
+    }
 }
 
 - (void)willResignActive {
@@ -135,7 +135,7 @@
     {
         _mtkView = [[MTKView alloc] initWithFrame:CGRectMake(0, 0, _viewWidth, _viewHeight)];
         _mtkView.delegate = self;
-        _mtkView.paused = false;
+        _mtkView.paused = NO;
 
         [self addSubview:_mtkView];
     }
@@ -177,7 +177,7 @@
     if (_renderingEnabled)
     {
         OSAtomicTestAndClear(1, &_clearRenderer);
-        _mtkView.paused = false;
+        _mtkView.paused = NO;
     }
 }
 
@@ -233,7 +233,10 @@
 - (void)drawInMTKView:(nonnull MTKView *)view  {
     if (OSAtomicTestAndClear(1, &_clearRenderer)) {
         [_mlRenderer clearFrame];
-        _mtkView.paused = true;
+        _mtkView.paused = YES;
+        return;
+    }
+    if (_mtkView.paused) {
         return;
     }
     otc_video_frame * frame = nil;

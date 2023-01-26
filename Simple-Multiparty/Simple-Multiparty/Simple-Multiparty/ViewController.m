@@ -17,12 +17,17 @@ static char* const kSessionId = "";
 // Replace with your generated token
 static char* const kToken = "";
 
-otc_session *session = NULL;
-otc_publisher *publisher = NULL;
-OTMTLVideoView *pubView = NULL;
-NSMutableArray<OTSubscriberWindow*> *arraySubscribersView = NULL;
+typedef struct {
+    otc_session *session;
+    otc_publisher *publisher;
+    void *view_controller;
+} SessionData;
 
-@interface ViewController ()
+@interface ViewController () {
+    SessionData *session_data;
+    OTMTLVideoView *pubView;
+    NSMutableArray<OTSubscriberWindow*> *arraySubscribersView;
+}
 
 @property (nonatomic, assign) BOOL isConnected;
 @property (nonatomic, assign) BOOL isCamMuted;
@@ -41,13 +46,17 @@ NSMutableArray<OTSubscriberWindow*> *arraySubscribersView = NULL;
     [super viewDidLoad];
     [self.view setFrameSize:CGSizeMake(400, 330)];
     [self setPreferredContentSize:self.view.frame.size];
+    
+    session_data = calloc(1, sizeof(SessionData));
+    session_data->view_controller = (__bridge void *)self;
+    
     otc_init(NULL);
     pubView = [[OTMTLVideoView alloc] initWithFrame:(CGRectMake(40,0,320,240))];
     [self.view addSubview:pubView];
     pubView.wantsLayer = YES;
     pubView.layer.borderWidth = 5;
     
-    setupPublisher((__bridge void*)self);
+    setupPublisher(session_data);
     
     arraySubscribersView = [[NSMutableArray alloc] init];
 }
@@ -55,21 +64,21 @@ NSMutableArray<OTSubscriberWindow*> *arraySubscribersView = NULL;
     NSLog(@"Connect Clicked");
     [connectBtn setEnabled:FALSE];
     if (_isConnected){
-        otc_session_disconnect(session);
+        otc_session_disconnect(session_data->session);
     }
     else{
-        setupOpentokSession((__bridge void*)self);
+        setupOpentokSession(session_data);
     }
 }
 - (IBAction)muteCamBtn:(id)sender {
     if (_isCamMuted){
-        otc_publisher_set_publish_video(publisher, OTC_TRUE);
+        otc_publisher_set_publish_video(session_data->publisher, OTC_TRUE);
         _isCamMuted = NO;
         muteCamBtn.bezelColor = NSColor.systemGreenColor;
         [muteCamBtn setTitle:@"Mute Cam"];
     }
     else{
-        otc_publisher_set_publish_video(publisher, OTC_FALSE);
+        otc_publisher_set_publish_video(session_data->publisher, OTC_FALSE);
         _isCamMuted = YES;
         muteCamBtn.bezelColor = NSColor.redColor;
         [muteCamBtn setTitle:@"Unmute Cam"];
@@ -78,13 +87,13 @@ NSMutableArray<OTSubscriberWindow*> *arraySubscribersView = NULL;
 
 - (IBAction)muteMicBtn:(id)sender {
     if  (_isCamMuted) {
-        otc_publisher_set_publish_audio(publisher, OTC_TRUE);
+        otc_publisher_set_publish_audio(session_data->publisher, OTC_TRUE);
         _isCamMuted = NO;
         muteMicBtn.bezelColor = NSColor.systemGreenColor;
         [muteMicBtn setTitle:@"Mute Mic"];
     }
     else{
-        otc_publisher_set_publish_audio(publisher, OTC_FALSE);
+        otc_publisher_set_publish_audio(session_data->publisher, OTC_FALSE);
         _isCamMuted = YES;
         muteMicBtn.bezelColor = NSColor.redColor;
         [muteMicBtn setTitle:@"Unmute Mic"];
@@ -95,7 +104,7 @@ void session_logger_func(const char* message) {
     NSLog(@"%s",message);
 }
 
-void setupOpentokSession(void * userdata){
+void setupOpentokSession(void *user_data){
     
     otc_log_enable(OTC_LOG_LEVEL_INFO);
     otc_log_set_logger_callback(session_logger_func);
@@ -112,15 +121,16 @@ void setupOpentokSession(void * userdata){
     session_callbacks.on_reconnection_started = session_on_reconnect_start;
     session_callbacks.on_reconnected = session_on_reconnect_succeess;
     session_callbacks.on_mute_forced = session_on_mute_forced;
-    session_callbacks.user_data = userdata;
+    session_callbacks.user_data = user_data;
     
-    if(session != NULL){
-        otc_session_delete(session);
+    SessionData *session_data = (SessionData *)user_data;
+    if(session_data->session != NULL){
+        otc_session_delete(session_data->session);
     }
     NSLog(@"creating session");
-    session = otc_session_new(kApiKey, kSessionId, &session_callbacks);
-    NSLog(@"Connecting to video cloud with kApikey=%s, kSessionId=%s and got session: %p", kApiKey, kSessionId, session);
-    otc_session_connect(session, kToken);
+    session_data->session = otc_session_new(kApiKey, kSessionId, &session_callbacks);
+    NSLog(@"Connecting to video cloud with kApikey=%s, kSessionId=%s and got session: %p", kApiKey, kSessionId, session_data->session);
+    otc_session_connect(session_data->session, kToken);
     
  }
 
@@ -129,28 +139,30 @@ void setupOpentokSession(void * userdata){
 
 void session_on_connected(otc_session *session, void *user_data) {
     NSLog(@"Session Connected");
-    ViewController *v = (__bridge ViewController *)user_data;
-    v.isConnected = YES;
+    SessionData *session_data = (SessionData *)user_data;
+    ViewController *vc = (__bridge ViewController *)session_data->view_controller;
+    vc.isConnected = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [v.statusLbl setStringValue:@"Connected"];
-        [v.connectBtn setEnabled:TRUE];
-        [v.connectBtn setTitle:@"Disconnect"];
-        v.connectBtn.bezelColor = NSColor.redColor;
+        [vc.statusLbl setStringValue:@"Connected"];
+        [vc.connectBtn setEnabled:TRUE];
+        [vc.connectBtn setTitle:@"Disconnect"];
+        vc.connectBtn.bezelColor = NSColor.redColor;
     });
-    otc_session_publish(session, publisher);
+    otc_session_publish(session_data->session, session_data->publisher);
 }
 
 void session_on_disconnected(otc_session *session, void *user_data) {
     NSLog(@"Session Disconnected");
-    ViewController *v = (__bridge ViewController *)user_data;
+    SessionData *session_data = (SessionData *)user_data;
+    ViewController *vc = (__bridge ViewController *)session_data->view_controller;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [v.statusLbl setStringValue:@"Disconnected"];
-        [v.connectBtn setEnabled:TRUE];
-        [v.connectBtn setTitle:@"Connect"];
-        v.connectBtn.bezelColor = NSColor.systemGreenColor;
+        [vc.statusLbl setStringValue:@"Disconnected"];
+        [vc.connectBtn setEnabled:TRUE];
+        [vc.connectBtn setTitle:@"Connect"];
+        vc.connectBtn.bezelColor = NSColor.systemGreenColor;
         //subscriberView.hidden = TRUE;
     });
-    v.isConnected = NO;
+    vc.isConnected = NO;
 }
 
 void on_connection_created(otc_session *session, void *user_data, const otc_connection *connection)
@@ -166,40 +178,34 @@ void on_connection_dropped(otc_session *session, void *user_data, const otc_conn
 void session_on_stream_received(otc_session *session, void *user_data, const otc_stream *stream) {
     NSLog(@"Stream Received");
     
-    ViewController *vc = (__bridge ViewController *)user_data;
+    SessionData *session_data = (SessionData *)user_data;
+    ViewController *vc = (__bridge ViewController *)session_data->view_controller;
     otc_stream *strcpy = otc_stream_copy(stream);
 
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        OTSubscriberWindow *subscriberWindow = [[OTSubscriberWindow alloc] initWithWindowNibName:@"OTSubscriberWindow"];
+        subscriberWindow.shouldCascadeWindows = YES;
+        [subscriberWindow loadWindow];
+        subscriberWindow.videoView.wantsLayer = YES;
+        subscriberWindow.videoView.layer.borderWidth = 5;
+        subscriberWindow.videoView.hidden = NO;
+        
         struct otc_subscriber_callbacks callbacks = {0};
+        callbacks.on_video_data_received = subscriber_on_video_data_received;
         callbacks.on_render_frame = subscriber_on_render_frame;
         callbacks.on_connected = subscriber_on_connected;
         callbacks.on_disconnected = subscriber_on_disconnected;
         callbacks.on_video_disabled = subscriber_on_video_disabled;
         callbacks.on_video_enabled = subscriber_on_video_enabled;
-        callbacks.user_data = user_data;
+        callbacks.user_data = (__bridge void*)subscriberWindow.videoView;
         otc_subscriber *subscriber= otc_subscriber_new(strcpy, &callbacks);
         otc_session_subscribe(session, subscriber);
         
-        bool alreadyExists = false;
-        for (OTSubscriberWindow *subscriberWindow in arraySubscribersView) {
-            otc_subscriber *oldSubscriber = [subscriberWindow getSubscriber];
-            if (strcmp(otc_subscriber_get_subscriber_id(subscriber), otc_subscriber_get_subscriber_id(oldSubscriber)) == 0) {
-                alreadyExists = true;
-            }
-        }
-        if (!alreadyExists) {
-            OTSubscriberWindow *subscriberWindow = [[OTSubscriberWindow alloc] initWithWindowNibName:@"OTSubscriberWindow"];
-            subscriberWindow.shouldCascadeWindows = YES;
-            [subscriberWindow loadWindow];
-            subscriberWindow.videoView.wantsLayer = YES;
-            subscriberWindow.videoView.layer.borderWidth = 5;
-            subscriberWindow.videoView.hidden = NO;
-            [subscriberWindow setSubscriber:subscriber];
-            [arraySubscribersView addObject:subscriberWindow];
-            NSLog(@"subscriber added");
-            [subscriberWindow showWindow:vc];
-        }
+        [subscriberWindow setSubscriber:subscriber];
+        [vc->arraySubscribersView addObject:subscriberWindow];
+        NSLog(@"subscriber added");
+        [subscriberWindow showWindow:vc];
         otc_stream_delete(strcpy);
     });
 }
@@ -207,26 +213,34 @@ void session_on_stream_received(otc_session *session, void *user_data, const otc
 void session_on_stream_dropped(otc_session *session, void *user_data, const otc_stream *stream) {
     NSLog(@"Stream Dropped");
     
-    //ViewController *vc = (__bridge ViewController *)user_data;
+    SessionData *session_data = (SessionData *)user_data;
+    ViewController *vc = (__bridge ViewController *)session_data->view_controller;
     otc_stream *strcpy = otc_stream_copy(stream);
 
     dispatch_async(dispatch_get_main_queue(), ^{
         int indexToDelete = -1;
-        for (int i = 0; i <= [arraySubscribersView count]; i++) {
-            OTSubscriberWindow *subscriberWindow = [arraySubscribersView objectAtIndex:i];
+        const char* stream_id = otc_stream_get_id(strcpy);
+        NSLog(@"session_on_stream_dropped -> stream_id=%s", stream_id);
+        for (int i = 0; i <= [vc->arraySubscribersView count]; i++) {
+            OTSubscriberWindow *subscriberWindow = [vc->arraySubscribersView objectAtIndex:i];
             otc_subscriber *subscriber = [subscriberWindow getSubscriber];
             otc_stream *sub_stream = otc_subscriber_get_stream(subscriber);
-            if (strcmp(otc_stream_get_id(sub_stream), otc_stream_get_id(strcpy)) == 0) {
+            const char* sub_stream_id = otc_stream_get_id(sub_stream);
+            NSLog(@"sub_stream_id=%s", sub_stream_id);
+            if (strcmp(sub_stream_id, stream_id) == 0) {
                 indexToDelete = i;
                 break;
             }
         }
         if (indexToDelete > -1) {
-            OTSubscriberWindow *subscriberWindow = [arraySubscribersView objectAtIndex:indexToDelete];
-            otc_subscriber *subscriber = [subscriberWindow getSubscriber];
-            otc_session_unsubscribe(session, subscriber);
+            OTSubscriberWindow *subscriberWindow = [vc->arraySubscribersView objectAtIndex:indexToDelete];
+            otc_subscriber *subscriber_to_delete = [subscriberWindow getSubscriber];
+            otc_stream *sub_stream_to_delete = otc_subscriber_get_stream(subscriber_to_delete);
+            const char* sub_stream_id_to_delete = otc_stream_get_id(sub_stream_to_delete);
+            NSLog(@"sub_stream_id_to_delete=%s", sub_stream_id_to_delete);
+            otc_session_unsubscribe(session, subscriber_to_delete);
             [subscriberWindow close];
-            [arraySubscribersView removeObjectAtIndex:indexToDelete];
+            [vc->arraySubscribersView removeObjectAtIndex:indexToDelete];
         }
         otc_stream_delete(strcpy);
     });
@@ -252,15 +266,18 @@ void session_on_reconnect_succeess(otc_session *session, void *user_data) {
 void session_on_mute_forced(otc_session *session, void *user_data, otc_on_mute_forced_info *mute_info) {
     
 }
-void setupPublisher(void * userdata){
+void setupPublisher(void *user_data) {
+    SessionData *session_data = (SessionData *)user_data;
+    ViewController *vc = (__bridge ViewController *)session_data->view_controller;
+    
     struct otc_publisher_callbacks publisher_callbacks = {0};
     publisher_callbacks.on_stream_created = publisher_on_stream_created;
     publisher_callbacks.on_render_frame = publisher_on_render_frame;
-    publisher_callbacks.user_data = userdata;
+    publisher_callbacks.user_data = (__bridge void*)vc->pubView;
     publisher_callbacks.on_stream_destroyed = publisher_on_stream_destroyed;
     
-    publisher = otc_publisher_new("Mac Publisher", NULL, &publisher_callbacks);
-    NSLog(@"Publisher created : %p",publisher);
+    session_data->publisher = otc_publisher_new("Mac Publisher", NULL, &publisher_callbacks);
+    NSLog(@"Publisher created : %p", session_data->publisher);
 }
 
 void publisher_on_stream_created(otc_publisher *publisher, void *user_data, const otc_stream *stream) {
@@ -272,45 +289,56 @@ void publisher_on_stream_destroyed(otc_publisher *publisher, void *user_data, co
 }
 
 static void publisher_on_render_frame(otc_publisher *publisher, void *user_data, const otc_video_frame *frame) {
-    //ViewController *vc = (__bridge ViewController *)user_data;
-    otc_video_frame *copy_frame = otc_video_frame_copy(frame);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [pubView renderVideoFrame:(otc_video_frame*)copy_frame];
-        otc_video_frame_delete(copy_frame);
-    });
+    OTMTLVideoView *videoView = (__bridge OTMTLVideoView *)user_data;
+    [videoView renderVideoFrame:(otc_video_frame*)frame];
+    //SessionData *session_data = (SessionData *)user_data;
+    //ViewController *vc = (__bridge ViewController *)session_data->view_controller;
+    //otc_video_frame *copy_frame = otc_video_frame_copy(frame);
+    //dispatch_async(dispatch_get_main_queue(), ^{
+    //    [vc->pubView renderVideoFrame:(otc_video_frame*)copy_frame];
+    //    otc_video_frame_delete(copy_frame);
+    //});
 }
 
+static void subscriber_on_video_data_received(otc_subscriber* subscriber, void* user_data) {
+    
+}
 
 static void subscriber_on_render_frame(otc_subscriber *subscriber, void *user_data, const otc_video_frame *frame) {
-    //ViewController *vc = (__bridge ViewController *)user_data;
-    otc_video_frame *copy_frame = otc_video_frame_copy(frame);
-    const char*subscriber_id = otc_subscriber_get_subscriber_id(subscriber);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        for (OTSubscriberWindow *subscriberWindow in arraySubscribersView) {
-            otc_subscriber *oldSubscriber = [subscriberWindow getSubscriber];
-            if (strcmp(subscriber_id, otc_subscriber_get_subscriber_id(oldSubscriber)) == 0) {
-                [subscriberWindow.videoView renderVideoFrame:(otc_video_frame*)copy_frame];
-            }
-        }
-        otc_video_frame_delete(copy_frame);
-    });
+    
+    
+    OTMTLVideoView *videoView = (__bridge OTMTLVideoView *)user_data;
+    [videoView renderVideoFrame:(otc_video_frame*)frame];
+    //SessionData *session_data = (SessionData *)user_data;
+    //ViewController *vc = (__bridge ViewController *)session_data->view_controller;
+    //otc_video_frame *copy_frame = otc_video_frame_copy(frame);
+    //const char*subscriber_id = otc_subscriber_get_subscriber_id(subscriber);
+    //dispatch_async(dispatch_get_main_queue(), ^{
+        //for (OTSubscriberWindow *subscriberWindow in vc->arraySubscribersView) {
+            //otc_subscriber *oldSubscriber = [subscriberWindow getSubscriber];
+            //if (strcmp(subscriber_id, otc_subscriber_get_subscriber_id(oldSubscriber)) == 0) {
+                //[subscriberWindow.videoView renderVideoFrame:(otc_video_frame*)copy_frame];
+            //}
+        //}
+        //otc_video_frame_delete(copy_frame);
+    //});
+    
 }
 
 static void subscriber_on_video_disabled(otc_subscriber* subscriber, void *user_data, enum otc_video_reason reason) {
-    
+    NSLog(@"subscriber_on_video_disabled");
 }
 
 static void subscriber_on_video_enabled(otc_subscriber* subscriber, void *user_data, enum otc_video_reason reason) {
-    
+    NSLog(@"subscriber_on_video_enabled");
 }
 
 static void subscriber_on_connected(otc_subscriber *subscriber, void *user_data, const otc_stream *stream) {
     NSLog(@"subscriber_on_connected");
-    //ViewController *vc = (__bridge ViewController *)user_data;
 }
 
 static void subscriber_on_disconnected(otc_subscriber *subscriber, void *user_data) {
-    
+    NSLog(@"subscriber_on_disconnected");
 }
 
 - (void)setRepresentedObject:(id)representedObject {
