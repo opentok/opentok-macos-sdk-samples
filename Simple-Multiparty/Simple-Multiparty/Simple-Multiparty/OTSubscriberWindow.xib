@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="OTSubscriberWindow">
+            <connections>
+                <outlet property="streamLabel" destination="bu4-BB-S5r" id="tRd-Nl-HtE"/>
+                <outlet property="videoView" destination="Wy6-9y-hlW" id="r10-7R-9vv"/>
+                <outlet property="window" destination="IQC-1l-W9x" id="J5v-oH-nWc"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Subscriber" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQC-1l-W9x" userLabel="OTSubscriberWindow">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
+            <rect key="contentRect" x="196" y="240" width="326" height="366"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1095"/>
+            <view key="contentView" id="BiC-kL-6F0">
+                <rect key="frame" x="0.0" y="0.0" width="326" height="366"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Wy6-9y-hlW" customClass="OTMTLVideoView">
+                        <rect key="frame" x="0.0" y="77" width="326" height="289"/>
+                    </customView>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Ruk-dI-BQ4">
+                        <rect key="frame" x="18" y="51" width="92" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="er2-CD-Qf7"/>
+                        </constraints>
+                        <buttonCell key="cell" type="check" title="Video" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mAi-RU-ujk">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onVideo:" target="-2" id="qsn-bk-qeC"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bu4-BB-S5r">
+                        <rect key="frame" x="20" y="18" width="282" height="16"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stream ID" id="xzn-gc-2E0">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5k-id-NsX">
+                        <rect key="frame" x="208" y="51" width="98" height="18"/>
+                        <buttonCell key="cell" type="check" title="Record" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nXj-Jn-hc3">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onSave:" target="-2" id="UZ3-LB-Lja"/>
+                        </connections>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Soh-LQ-3GK">
+                        <rect key="frame" x="116" y="51" width="81" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="79" id="0pI-uh-fvZ"/>
+                        </constraints>
+                        <buttonCell key="cell" type="check" title="Audio" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0d0-1J-edZ">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onAudio:" target="-2" id="fbd-8E-VFS"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="c5k-id-NsX" secondAttribute="trailing" constant="20" symbolic="YES" id="1n3-GY-dr4"/>
+                    <constraint firstAttribute="bottom" secondItem="Wy6-9y-hlW" secondAttribute="bottom" constant="77" id="3Qk-bO-oDp"/>
+                    <constraint firstItem="bu4-BB-S5r" firstAttribute="top" secondItem="Ruk-dI-BQ4" secondAttribute="bottom" constant="18" id="8Qa-jj-Kum"/>
+                    <constraint firstItem="Soh-LQ-3GK" firstAttribute="leading" secondItem="Ruk-dI-BQ4" secondAttribute="trailing" constant="8" id="Avb-eV-pa0"/>
+                    <constraint firstItem="Ruk-dI-BQ4" firstAttribute="baseline" secondItem="Soh-LQ-3GK" secondAttribute="baseline" id="HI0-C1-GM1"/>
+                    <constraint firstItem="Ruk-dI-BQ4" firstAttribute="leading" secondItem="BiC-kL-6F0" secondAttribute="leading" constant="20" symbolic="YES" id="MCH-Pe-vZ4"/>
+                    <constraint firstItem="Wy6-9y-hlW" firstAttribute="top" secondItem="BiC-kL-6F0" secondAttribute="top" id="ODC-Jf-W6l"/>
+                    <constraint firstItem="Wy6-9y-hlW" firstAttribute="leading" secondItem="BiC-kL-6F0" secondAttribute="leading" id="Qhp-9g-Fws"/>
+                    <constraint firstAttribute="trailing" secondItem="Wy6-9y-hlW" secondAttribute="trailing" id="Yeq-Vj-p44"/>
+                    <constraint firstItem="c5k-id-NsX" firstAttribute="baseline" secondItem="Soh-LQ-3GK" secondAttribute="baseline" id="ZFb-Oe-bwD"/>
+                    <constraint firstItem="Ruk-dI-BQ4" firstAttribute="top" secondItem="Wy6-9y-hlW" secondAttribute="bottom" constant="9" id="liT-H2-oZb"/>
+                    <constraint firstAttribute="trailing" secondItem="bu4-BB-S5r" secondAttribute="trailing" constant="26" id="tUn-Qk-dsl"/>
+                    <constraint firstItem="c5k-id-NsX" firstAttribute="leading" secondItem="Soh-LQ-3GK" secondAttribute="trailing" constant="13" id="w4h-pI-eNq"/>
+                    <constraint firstItem="bu4-BB-S5r" firstAttribute="leading" secondItem="BiC-kL-6F0" secondAttribute="leading" constant="22" id="xeY-mE-HBa"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="267" y="280"/>
+        </window>
+    </objects>
+</document>
