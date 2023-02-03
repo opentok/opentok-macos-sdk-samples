@@ -60,10 +60,20 @@ typedef struct {
     
     arraySubscribersView = [[NSMutableArray alloc] init];
 }
+- (void) viewWillDisappear {
+    for (OTSubscriberWindow* w in arraySubscribersView) {
+        [w close];
+    }
+    [super viewWillDisappear];
+    
+}
 - (IBAction)connectBtn:(id)sender {
     NSLog(@"Connect Clicked");
     [connectBtn setEnabled:FALSE];
     if (_isConnected){
+        for (OTSubscriberWindow* w in arraySubscribersView) {
+            [w close];
+        }
         otc_session_disconnect(session_data->session);
     }
     else{
