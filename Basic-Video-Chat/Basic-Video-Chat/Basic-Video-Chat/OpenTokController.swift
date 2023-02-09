@@ -51,20 +51,15 @@ class OpenTokController: NSObject, ObservableObject {
     func audioObjectPropertyListenerBlock (numberAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>) {
         var index: UInt32 = 0
         while index < numberAddresses {
-            let address: AudioObjectPropertyAddress = addresses[0]
+            let address: AudioObjectPropertyAddress = addresses[Int(index)]
             switch address.mSelector {
             case kAudioHardwarePropertyDefaultOutputDevice:
                 
                 guard let device = AudioDevice.getDefaultAudioOutputDevice() else { return }
-                //let allAudioDevices = AudioDevice.getAll()
-                //let firstDevice = allAudioDevices
-                //        .first(where: {$0.hasOutputStreams && $0.isBuiltIn })!
-                //print("kAudioHardwarePropertyDefaultOutputDevice: \(firstDevice.id): \(firstDevice.uid)")
                 var deviceID = device.id
                 print("kAudioHardwarePropertyDefaultOutputDevice: \(deviceID): \(device.uid)")
                 let engine = AVAudioEngine()
                 if let outputAudioUnit = engine.outputNode.audioUnit {
-                    
                     let error = AudioUnitSetProperty(outputAudioUnit,
                                                      kAudioOutputUnitProperty_CurrentDevice,
                                                      kAudioUnitScope_Global,
@@ -128,7 +123,7 @@ struct AudioDevice {
     static func getAll() -> [AudioDevice] {
         var propertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDevices,
-            mScope: kAudioObjectPropertyScopeGlobal,
+            mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMain)
 
         // Get size of buffer for list
@@ -158,19 +153,6 @@ struct AudioDevice {
         var devicePropertyAddress = AudioObjectPropertyAddress(mSelector: kAudioHardwarePropertyDefaultOutputDevice,
                                                                mScope: kAudioObjectPropertyScopeGlobal,
                                                                mElement: kAudioObjectPropertyElementMain)
-        /*
-        var deviceID: AudioObjectID = kAudioDeviceUnknown
-        var dataSize = UInt32(MemoryLayout.size(ofValue: deviceID))
-        let systemObjectID = AudioObjectID(bitPattern: kAudioObjectSystemObject)
-        if (kAudioHardwareNoError != AudioObjectGetPropertyData(systemObjectID,
-                                                                &devicePropertyAddress,
-                                                                0,
-                                                                nil,
-                                                                &dataSize,
-                                                                &deviceID)) {
-            return 0
-        }
-         */
         var devicesBufferSize: UInt32 = 0
         AudioObjectGetPropertyDataSize(AudioObjectID(kAudioObjectSystemObject),
                                        &devicePropertyAddress,
@@ -187,6 +169,7 @@ struct AudioDevice {
                                        buffer.baseAddress!)
             initializedCount = devicesCount
         }
+        
         return devices.map(Self.init).first
     }
 
@@ -213,7 +196,7 @@ struct AudioDevice {
 
         var propertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioDevicePropertyTransportType,
-            mScope: kAudioObjectPropertyScopeGlobal,
+            mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMain)
 
         AudioObjectGetPropertyData(id, &propertyAddress,
@@ -227,7 +210,7 @@ struct AudioDevice {
 
         var propertyAddress = AudioObjectPropertyAddress(
             mSelector: kAudioDevicePropertyDeviceUID,
-            mScope: kAudioObjectPropertyScopeGlobal,
+            mScope: kAudioDevicePropertyScopeOutput,
             mElement: kAudioObjectPropertyElementMain)
 
         var result: CFString = "" as CFString
