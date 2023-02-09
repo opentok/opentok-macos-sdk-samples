@@ -110,8 +110,10 @@ static OSStatus playout_cb(void *ref_con,
         };
         
         OSStatus status = AudioObjectAddPropertyListenerBlock(kAudioObjectSystemObject, &devicePropertyAddress, nil, audioObjectPropertyListenerBlock);
-        NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-        NSLog(@"error: %@", error.localizedDescription);
+        if (status != noErr) {
+            NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            NSLog(@"error: %@", error.localizedDescription);
+        }
     }
     return self;
 }
