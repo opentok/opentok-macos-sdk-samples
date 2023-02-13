@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -340,9 +340,10 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) camera use";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Basic-Video-Chat bluetooth use";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Basic-Video-Chat camera use";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_NAME) microphone use";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Basic-Video-Chat microphone use";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -382,9 +383,10 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) camera use";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Basic-Video-Chat bluetooth use";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Basic-Video-Chat camera use";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_NAME) microphone use";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Basic-Video-Chat microphone use";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

@@ -87,6 +87,33 @@ static OSStatus playout_cb(void *ref_con,
         _safetyQueue = dispatch_queue_create("ot-audio-driver",
                                              DISPATCH_QUEUE_SERIAL);
         _restartRetryCount = 0;
+        
+        struct AudioObjectPropertyAddress devicePropertyAddress;
+        devicePropertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
+        devicePropertyAddress.mScope = kAudioObjectPropertyScopeGlobal;
+        devicePropertyAddress.mElement = kAudioObjectPropertyElementMain;
+        
+        AudioObjectPropertyListenerBlock audioObjectPropertyListenerBlock = ^(UInt32 numberAddresses, const AudioObjectPropertyAddress* addresses) {
+            NSLog(@"AudioObjectPropertyListenerBlock");
+            UInt32 index = 0;
+            while (index < numberAddresses) {
+                AudioObjectPropertyAddress address = addresses[index];
+                switch (address.mSelector) {
+                    case kAudioHardwarePropertyDefaultOutputDevice:
+                        [self setDefaultOutput];
+                        break;
+                    default:
+                        break;
+                }
+                index++;
+            }
+        };
+        
+        OSStatus status = AudioObjectAddPropertyListenerBlock(kAudioObjectSystemObject, &devicePropertyAddress, nil, audioObjectPropertyListenerBlock);
+        if (status != noErr) {
+            NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+            NSLog(@"error: %@", error.localizedDescription);
+        }
     }
     return self;
 }
@@ -597,8 +624,8 @@ static OSStatus playout_cb(void *ref_con,
     
     AudioComponentDescription audio_unit_description;
     audio_unit_description.componentType = kAudioUnitType_Output;
-    audio_unit_description.componentSubType = kAudioUnitSubType_VoiceProcessingIO;
-    audio_unit_description.componentManufacturer = kAudioUnitManufacturer_Apple;
+    audio_unit_description.componentSubType = isPlayout ? kAudioUnitSubType_DefaultOutput : kAudioUnitSubType_VoiceProcessingIO;
+    audio_unit_description.componentManufacturer = 0;
     audio_unit_description.componentFlags = 0;
     audio_unit_description.componentFlagsMask = 0;
     
@@ -709,6 +736,204 @@ static OSStatus playout_cb(void *ref_con,
                                  kAudioUnitScope_Input, kOutputBus, &render_callback,
                                  sizeof(render_callback));
     return (result == 0);
+}
+
+- (void)setDefaultOutput
+{
+    AudioDeviceID deviceID = [OTDefaultAudioDeviceMac getDefaultAudioOutputDeviceID];
+    AVAudioEngine *engine = [[AVAudioEngine alloc] init];
+    AudioUnit outputAudioUnit = [[engine outputNode] audioUnit];
+    if (outputAudioUnit != nil) {
+        OSStatus status = AudioUnitSetProperty(outputAudioUnit,
+                                               kAudioOutputUnitProperty_CurrentDevice,
+                                               kAudioUnitScope_Global,
+                                               0,
+                                               &deviceID,
+                                               sizeof(deviceID));
+        NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+        NSLog(@"error: %@", error.localizedDescription);
+    }
+}
+
++ (AudioDeviceID)getDefaultAudioOutputDeviceID
+{
+    // Get the default output device.
+    AudioDeviceID deviceID;
+    UInt32 defaultOutputPropSize = sizeof(AudioDeviceID);
+    AudioObjectPropertyAddress defaultOutputAddress = {
+        kAudioHardwarePropertyDefaultOutputDevice,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMain,
+    };
+    OSStatus status = AudioObjectGetPropertyData(kAudioObjectSystemObject,
+                                                 &defaultOutputAddress,
+                                                 0,
+                                                 NULL,
+                                                 &defaultOutputPropSize,
+                                                 &deviceID);
+    if (status != noErr) {
+        NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
+        NSLog(@"error: %@", error.localizedDescription);
+    }
+
+    NSLog(@" - UID:             %@", getStringProperty(deviceID, kAudioDevicePropertyDeviceUID));
+    NSLog(@" - Model UID:       %@", getStringProperty(deviceID, kAudioDevicePropertyModelUID));
+    NSLog(@" - Name:            %@", getStringProperty(deviceID, kAudioDevicePropertyDeviceNameCFString));
+    NSLog(@" - Manufacturer:    %@", getStringProperty(deviceID, kAudioDevicePropertyDeviceManufacturerCFString));
+    NSLog(@" - Input channels:  %@", @(getChannelCount(deviceID, kAudioObjectPropertyScopeInput)));
+    NSLog(@" - Output channels: %@", @(getChannelCount(deviceID, kAudioObjectPropertyScopeOutput)));
+    NSLog(@" - Input source:    %@", getSourceName(deviceID, kAudioObjectPropertyScopeInput));
+    NSLog(@" - Output source:   %@", getSourceName(deviceID, kAudioObjectPropertyScopeOutput));
+    NSLog(@" - Transport type:  %@", getCodeProperty(deviceID, kAudioDevicePropertyTransportType));
+    NSLog(@" - Icon:            %@", getURLProperty(deviceID, kAudioDevicePropertyIcon));
+    return deviceID;
+}
+
+static inline AudioObjectPropertyAddress makeGlobalPropertyAddress(AudioObjectPropertySelector selector)
+{
+    AudioObjectPropertyAddress address = {
+        selector,
+        kAudioObjectPropertyScopeGlobal,
+        kAudioObjectPropertyElementMain,
+
+    };
+    return address;
+}
+
+static NSString *formatStatusError(OSStatus status)
+{
+    if (status == noErr) {
+        return [NSString stringWithFormat:@"No error (%d)", status];
+    }
+
+    return [NSString stringWithFormat:@"Error \"%s\" (%d)",
+            codeToString(status),
+            status];
+}
+
+static char *codeToString(UInt32 code)
+{
+    static char str[5] = { '\0' };
+    UInt32 swapped = CFSwapInt32HostToBig(code);
+    memcpy(str, &swapped, sizeof(swapped));
+    return str;
+}
+
+static NSString *getStringProperty(AudioDeviceID deviceID,
+                                   AudioObjectPropertySelector selector)
+{
+    AudioObjectPropertyAddress address = makeGlobalPropertyAddress(selector);
+    CFStringRef prop;
+    UInt32 propSize = sizeof(prop);
+    OSStatus status = AudioObjectGetPropertyData(deviceID,
+                                                 &address,
+                                                 0,
+                                                 NULL,
+                                                 &propSize,
+                                                 &prop);
+    if (status != noErr) {
+        return formatStatusError(status);
+    }
+    return (__bridge_transfer NSString *)prop;
+}
+
+static NSUInteger getChannelCount(AudioDeviceID deviceID,
+                                  AudioObjectPropertyScope scope)
+{
+    AudioObjectPropertyAddress address = {
+        kAudioDevicePropertyStreamConfiguration,
+        scope,
+        kAudioObjectPropertyElementMain,
+    };
+
+    AudioBufferList streamConfiguration;
+    UInt32 propSize = sizeof(streamConfiguration);
+    OSStatus status = AudioObjectGetPropertyData(deviceID,
+                                                 &address,
+                                                 0,
+                                                 NULL,
+                                                 &propSize,
+                                                 &streamConfiguration);
+    if (status != noErr) {
+        NSLog(@"%@", formatStatusError(status));
+        return 0;
+    }
+
+    NSUInteger channelCount = 0;
+    for (NSUInteger i = 0; i < streamConfiguration.mNumberBuffers; i++)
+    {
+        channelCount += streamConfiguration.mBuffers[i].mNumberChannels;
+    }
+
+    return channelCount;
+}
+
+static NSString *getSourceName(AudioDeviceID deviceID,
+                               AudioObjectPropertyScope scope)
+{
+    AudioObjectPropertyAddress address = {
+        kAudioDevicePropertyDataSource,
+        scope,
+        kAudioObjectPropertyElementMain,
+    };
+
+    UInt32 sourceCode;
+    UInt32 propSize = sizeof(sourceCode);
+
+    OSStatus status = AudioObjectGetPropertyData(deviceID,
+                                                 &address,
+                                                 0,
+                                                 NULL,
+                                                 &propSize,
+                                                 &sourceCode);
+    if (status != noErr) {
+        return formatStatusError(status);
+    }
+
+    return [NSString stringWithFormat:@"%s (%d)",
+            codeToString(sourceCode),
+            sourceCode];
+}
+
+static NSString *getCodeProperty(AudioDeviceID deviceID,
+                                 AudioObjectPropertySelector selector)
+{
+    AudioObjectPropertyAddress address = makeGlobalPropertyAddress(selector);
+    UInt32 prop;
+    UInt32 propSize = sizeof(prop);
+    OSStatus status = AudioObjectGetPropertyData(deviceID,
+                                                 &address,
+                                                 0,
+                                                 NULL,
+                                                 &propSize,
+                                                 &prop);
+    if (status != noErr) {
+        return formatStatusError(status);
+    }
+
+    return [NSString stringWithFormat:@"%s (%d)",
+            codeToString(prop),
+            prop];
+}
+
+static NSString *getURLProperty(AudioDeviceID deviceID,
+                                AudioObjectPropertySelector selector)
+{
+    AudioObjectPropertyAddress address = makeGlobalPropertyAddress(selector);
+    CFURLRef prop;
+    UInt32 propSize = sizeof(prop);
+    OSStatus status = AudioObjectGetPropertyData(deviceID,
+                                                 &address,
+                                                 0,
+                                                 NULL,
+                                                 &propSize,
+                                                 &prop);
+    if (status != noErr) {
+        return formatStatusError(status);
+    }
+
+    NSURL *url = (__bridge_transfer NSURL *)prop;
+    return url.absoluteString;
 }
 
 @end
