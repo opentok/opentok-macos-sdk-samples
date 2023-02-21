@@ -1,0 +1,12 @@
+require_relative '../OpenTokSDKVersion'
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :osx, MinMacOSVersion
+
+workspace 'Custom-Video-Capturer.xcworkspace'
+
+target 'Custom-Video-Capturer' do
+  project 'Custom-Video-Capturer.xcodeproj'
+  use_frameworks! :linkage => :static
+  pod 'VonageClientSDKVideoMacOS', OpenTokSDKVersion
+end

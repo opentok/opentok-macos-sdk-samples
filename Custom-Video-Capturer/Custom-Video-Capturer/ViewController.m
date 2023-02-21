@@ -8,25 +8,25 @@
 #import "ViewController.h"
 #import <OpenTok/opentok.h>
 #import "OTMTLVideoView.h"
-
+#import "OTMacDefaultVideoCapturer.h"
+#import "OTVideoCaptureProxy.h"
 // Replace with your OpenTok API key
-static char* const kApiKey = "46183452";
+static char* const kApiKey = "";
 // Replace with your generated session ID
-static char* const kSessionId = "2_MX40NjE4MzQ1Mn5-MTY3NTY2OTcxNjYwMX5qM2g1R2pnbWMrRXU0dVZXVzdKdUl0c1Z-fn4";
+static char* const kSessionId = "";
 // Replace with your generated token
-static char* const kToken = "T1==cGFydG5lcl9pZD00NjE4MzQ1MiZzaWc9ZmJmYWM0YTUxOWNlM2FjZDlkMGMxNzI0ZGI0M2UzYjY3ZjkzMjQ2NzpzZXNzaW9uX2lkPTJfTVg0ME5qRTRNelExTW41LU1UWTNOVFkyT1RjeE5qWXdNWDVxTTJnMVIycG5iV01yUlhVMGRWWlhWemRLZFVsMGMxWi1mbjQmY3JlYXRlX3RpbWU9MTY3NTY2OTcxNyZub25jZT0wLjc3NzY2MzUwMjIxMTUwODYmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTY3NjI3NDUxNyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+static char* const kToken = "";
 
 otc_session *session = NULL;
 otc_publisher *publisher = NULL;
 OTMTLVideoView *pubView = NULL;
 OTMTLVideoView *subscriberView = NULL;
-
+OTVideoCaptureProxy *videoProxy = NULL;
 bool isConnected = false;
 bool isCamMuted = false;
 bool isMicMuted = false;
 
 @implementation ViewController
-
 @synthesize statusLbl;
 @synthesize connectBtn;
 @synthesize muteCamBtn;
@@ -96,8 +96,8 @@ void session_logger_func(const char* message) {
 
 void setupOpentokSession(void * userdata){
     
-    otc_log_enable(OTC_LOG_LEVEL_INFO);
-    otc_log_set_logger_callback(session_logger_func);
+   // otc_log_enable(OTC_LOG_LEVEL_INFO);
+    //otc_log_set_logger_callback(session_logger_func);
     
     struct otc_session_callbacks session_callbacks = {0};
     session_callbacks.on_connected = session_on_connected;
@@ -129,6 +129,8 @@ void setupOpentokSession(void * userdata){
 void session_on_connected(otc_session *session, void *user_data) {
     NSLog(@"Session Connected");
     isConnected = true;
+    otc_session_publish(session, publisher);
+
     ViewController *v = (__bridge ViewController *)user_data;
     dispatch_async(dispatch_get_main_queue(), ^{
         [v.statusLbl setStringValue:@"Connected"];
@@ -136,7 +138,6 @@ void session_on_connected(otc_session *session, void *user_data) {
         [v.connectBtn setTitle:@"Disconnect"];
         v.connectBtn.bezelColor = NSColor.redColor;
     });
-    otc_session_publish(session, publisher);
    
 }
 
@@ -174,6 +175,7 @@ void session_on_stream_received(otc_session *session, void *user_data, const otc
     callbacks.on_connected = subscriber_on_connected;
     callbacks.on_video_disabled = subscriber_on_video_disabled;
     callbacks.on_video_enabled = subscriber_on_video_enabled;
+    callbacks.on_error = subscriber_on_error;
     callbacks.user_data = user_data;
     otc_subscriber *subscriber= otc_subscriber_new(stream, &callbacks);
     otc_session_subscribe(session, subscriber);
@@ -205,23 +207,26 @@ void session_on_mute_forced(otc_session *session, void *user_data, otc_on_mute_f
     
 }
 void setupPublisher(void * userdata){
+    videoProxy = [[OTVideoCaptureProxy alloc] init];
     struct otc_publisher_callbacks publisher_callbacks = {0};
     publisher_callbacks.on_stream_created = publisher_on_stream_created;
     publisher_callbacks.on_render_frame = publisher_on_render_frame;
     publisher_callbacks.user_data = userdata;
     publisher_callbacks.on_stream_destroyed = publisher_on_stream_destroyed;
+    publisher_callbacks.on_error = publisher_on_error;
     
-    publisher = otc_publisher_new("Mac Publisher", NULL, &publisher_callbacks);
+    publisher = otc_publisher_new("Mac Publisher", videoProxy.otc_video_capture_driver, &publisher_callbacks);
     NSLog(@"Publisher created : %p",publisher);
+  
 }
 
 void publisher_on_stream_created(otc_publisher *publisher, void *user_data, const otc_stream *stream) {
    
-    
+    NSLog(@"Publisher stream created");
 }
 
 void publisher_on_stream_destroyed(otc_publisher *publisher, void *user_data, const otc_stream *stream){
-    
+    NSLog(@"Publisher stream destroyed");
 }
 
 static void publisher_on_render_frame(otc_publisher *publisher, void *user_data, const otc_video_frame *frame) {
@@ -229,9 +234,16 @@ static void publisher_on_render_frame(otc_publisher *publisher, void *user_data,
     [pubView renderVideoFrame:(otc_video_frame*)frame];
 }
 
+static void publisher_on_error(otc_publisher *publisher, void *user_data, const char *error_string, enum otc_publisher_error_code error_code){
+    NSLog(@"Publisher error: %s, code: %d",error_string,error_code);
+}
 
 static void subscriber_on_render_frame(otc_subscriber *subscriber, void *user_data, const otc_video_frame *frame) {
     [subscriberView renderVideoFrame:(otc_video_frame*)frame];
+}
+
+static void subscriber_on_error(otc_subscriber *subscriber, void *user_data, const char *error_string, enum otc_subscriber_error_code error_code){
+    NSLog(@"Subscriber error: %s, code: %d",error_string,error_code);
 }
 
 static void subscriber_on_video_disabled(otc_subscriber* subscriber, void *user_data, enum otc_video_reason reason) {
@@ -243,6 +255,7 @@ static void subscriber_on_video_enabled(otc_subscriber* subscriber, void *user_d
 }
 
 static void subscriber_on_connected(otc_subscriber *subscriber, void *user_data, const otc_stream *stream) {
+    NSLog(@"Subscriber connected");
     dispatch_async(dispatch_get_main_queue(), ^{
         subscriberView.hidden = FALSE;
     });
@@ -251,6 +264,8 @@ static void subscriber_on_connected(otc_subscriber *subscriber, void *user_data,
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
 }
+
+
 
 
 @end
