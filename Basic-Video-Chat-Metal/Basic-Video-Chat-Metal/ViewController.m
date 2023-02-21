@@ -10,11 +10,11 @@
 #import "OTMTLVideoView.h"
 
 // Replace with your OpenTok API key
-static char* const kApiKey = "46183452";
+static char* const kApiKey = "";
 // Replace with your generated session ID
-static char* const kSessionId = "2_MX40NjE4MzQ1Mn5-MTY3NTY2OTcxNjYwMX5qM2g1R2pnbWMrRXU0dVZXVzdKdUl0c1Z-fn4";
+static char* const kSessionId = "";
 // Replace with your generated token
-static char* const kToken = "T1==cGFydG5lcl9pZD00NjE4MzQ1MiZzaWc9ZmJmYWM0YTUxOWNlM2FjZDlkMGMxNzI0ZGI0M2UzYjY3ZjkzMjQ2NzpzZXNzaW9uX2lkPTJfTVg0ME5qRTRNelExTW41LU1UWTNOVFkyT1RjeE5qWXdNWDVxTTJnMVIycG5iV01yUlhVMGRWWlhWemRLZFVsMGMxWi1mbjQmY3JlYXRlX3RpbWU9MTY3NTY2OTcxNyZub25jZT0wLjc3NzY2MzUwMjIxMTUwODYmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTY3NjI3NDUxNyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+static char* const kToken = "";
 
 otc_session *session = NULL;
 otc_publisher *publisher = NULL;
