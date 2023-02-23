@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09D7645BD2EE7D2E501F5045 /* Pods_Custom_Video_Capturer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6B17B13FE6821CFFF00E5F /* Pods_Custom_Video_Capturer.framework */; };
 		0CC50DF029A4A40300C5A199 /* OTMacDefaultVideoCapturer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0CC50DEF29A4A40300C5A199 /* OTMacDefaultVideoCapturer.mm */; };
 		0CC50DF429A4A4B900C5A199 /* OTVideoKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC50DF229A4A4B900C5A199 /* OTVideoKit.m */; };
 		0CC50DF929A4B1CB00C5A199 /* OTVideoCaptureProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC50DF829A4B1CB00C5A199 /* OTVideoCaptureProxy.m */; };
@@ -23,7 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A11CACFB6C85CE2C2F5681B /* Pods-Custom-Video-Capturer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Video-Capturer.release.xcconfig"; path = "Target Support Files/Pods-Custom-Video-Capturer/Pods-Custom-Video-Capturer.release.xcconfig"; sourceTree = "<group>"; };
 		0CC50DEF29A4A40300C5A199 /* OTMacDefaultVideoCapturer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OTMacDefaultVideoCapturer.mm; sourceTree = "<group>"; };
 		0CC50DF129A4A48400C5A199 /* OTMacDefaultVideoCapturer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OTMacDefaultVideoCapturer.h; sourceTree = "<group>"; };
 		0CC50DF229A4A4B900C5A199 /* OTVideoKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTVideoKit.m; sourceTree = "<group>"; };
@@ -46,8 +44,6 @@
 		0CC86404299C7C760027D30F /* OTMTLVideoRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OTMTLVideoRenderer.mm; sourceTree = "<group>"; };
 		0CC86405299C7C760027D30F /* OTMTLVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTMTLVideoView.m; sourceTree = "<group>"; };
 		0CC86409299C7E840027D30F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		6E6B17B13FE6821CFFF00E5F /* Pods_Custom_Video_Capturer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Custom_Video_Capturer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B1B61EF1EEF16E284F8329B /* Pods-Custom-Video-Capturer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Video-Capturer.debug.xcconfig"; path = "Target Support Files/Pods-Custom-Video-Capturer/Pods-Custom-Video-Capturer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09D7645BD2EE7D2E501F5045 /* Pods_Custom_Video_Capturer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +63,6 @@
 				0CC863EC299C7BAB0027D30F /* Custom-Video-Capturer */,
 				0CC863EB299C7BAB0027D30F /* Products */,
 				80EEE201A910E5D6508BA30B /* Pods */,
-				1362DB1B5D1906451D19496F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,19 +102,9 @@
 			path = "Custom-Video-Capturer";
 			sourceTree = "<group>";
 		};
-		1362DB1B5D1906451D19496F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6E6B17B13FE6821CFFF00E5F /* Pods_Custom_Video_Capturer.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		80EEE201A910E5D6508BA30B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7B1B61EF1EEF16E284F8329B /* Pods-Custom-Video-Capturer.debug.xcconfig */,
-				0A11CACFB6C85CE2C2F5681B /* Pods-Custom-Video-Capturer.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -132,11 +116,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CC863FD299C7BAC0027D30F /* Build configuration list for PBXNativeTarget "Custom-Video-Capturer" */;
 			buildPhases = (
-				FAD617BB6F7FBBD80DF472D7 /* [CP] Check Pods Manifest.lock */,
 				0CC863E6299C7BAB0027D30F /* Sources */,
 				0CC863E7299C7BAB0027D30F /* Frameworks */,
 				0CC863E8299C7BAB0027D30F /* Resources */,
-				67209D098966BC3A0A6CB74B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,48 +173,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		67209D098966BC3A0A6CB74B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Custom-Video-Capturer/Pods-Custom-Video-Capturer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Custom-Video-Capturer/Pods-Custom-Video-Capturer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Custom-Video-Capturer/Pods-Custom-Video-Capturer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FAD617BB6F7FBBD80DF472D7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Custom-Video-Capturer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0CC863E6299C7BAB0027D30F /* Sources */ = {
@@ -376,7 +316,6 @@
 		};
 		0CC863FE299C7BAC0027D30F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B1B61EF1EEF16E284F8329B /* Pods-Custom-Video-Capturer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -404,7 +343,6 @@
 		};
 		0CC863FF299C7BAC0027D30F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A11CACFB6C85CE2C2F5681B /* Pods-Custom-Video-Capturer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
