@@ -11,11 +11,11 @@
 #import "OTMacDefaultVideoCapturer.h"
 #import "OTVideoCaptureProxy.h"
 // Replace with your OpenTok API key
-static char* const kApiKey = "46183452";
+static char* const kApiKey = "";
 // Replace with your generated session ID
-static char* const kSessionId = "2_MX40NjE4MzQ1Mn5-MTY3NzU1MTE3Njc2OH56eDN0SWc4OHlXMlBHQVVsbUMvRStqSnh-fn4";
+static char* const kSessionId = "";
 // Replace with your generated token
-static char* const kToken = "T1==cGFydG5lcl9pZD00NjE4MzQ1MiZzaWc9YTFiOWNkYzhlODdiZDI1Y2NkMGEzNGMwYmQwNGYzNzE4MTIwZGEzMzpzZXNzaW9uX2lkPTJfTVg0ME5qRTRNelExTW41LU1UWTNOelUxTVRFM05qYzJPSDU2ZUROMFNXYzRPSGxYTWxCSFFWVnNiVU12UlN0cVNuaC1mbjQmY3JlYXRlX3RpbWU9MTY3NzU1MTE3NyZub25jZT0wLjA0NjQxODAxNzc4MTI2ODUzJnJvbGU9bW9kZXJhdG9yJmV4cGlyZV90aW1lPTE2ODAxNDMxNzcmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
+static char* const kToken = "";
 
 otc_session *session = NULL;
 otc_publisher *publisher = NULL;
