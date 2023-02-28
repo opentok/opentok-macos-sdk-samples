@@ -16,7 +16,6 @@
 		0C75368928E2E39F00970C4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C75368828E2E39F00970C4B /* Assets.xcassets */; };
 		0C75368C28E2E39F00970C4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C75368A28E2E39F00970C4B /* Main.storyboard */; };
 		0C75368E28E2E39F00970C4B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C75368D28E2E39F00970C4B /* main.m */; };
-		DCBC1888DA61018609152B0E /* Pods_Basic_Video_Chat_Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A34C17A80E03FC502A0E99A /* Pods_Basic_Video_Chat_Metal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,9 +48,6 @@
 		0C75368828E2E39F00970C4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C75368B28E2E39F00970C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C75368D28E2E39F00970C4B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5324A269B6EB83682DF6470D /* Pods-Basic-Video-Chat-Metal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat-Metal.debug.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Chat-Metal/Pods-Basic-Video-Chat-Metal.debug.xcconfig"; sourceTree = "<group>"; };
-		5A34C17A80E03FC502A0E99A /* Pods_Basic_Video_Chat_Metal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basic_Video_Chat_Metal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CF96710604057BE7317AF92 /* Pods-Basic-Video-Chat-Metal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat-Metal.release.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Chat-Metal/Pods-Basic-Video-Chat-Metal.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCBC1888DA61018609152B0E /* Pods_Basic_Video_Chat_Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +68,6 @@
 				0C75368128E2E39E00970C4B /* Basic-Video-Chat-Metal */,
 				0C75368028E2E39E00970C4B /* Products */,
 				EF5BF41E213972C4A00DC14F /* Pods */,
-				C2E1E41AE4BE10DC57D5F61F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,19 +100,9 @@
 			path = "Basic-Video-Chat-Metal";
 			sourceTree = "<group>";
 		};
-		C2E1E41AE4BE10DC57D5F61F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5A34C17A80E03FC502A0E99A /* Pods_Basic_Video_Chat_Metal.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		EF5BF41E213972C4A00DC14F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5324A269B6EB83682DF6470D /* Pods-Basic-Video-Chat-Metal.debug.xcconfig */,
-				9CF96710604057BE7317AF92 /* Pods-Basic-Video-Chat-Metal.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -130,12 +114,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C75369228E2E39F00970C4B /* Build configuration list for PBXNativeTarget "Basic-Video-Chat-Metal" */;
 			buildPhases = (
-				7993D5BE6ACD9369645A4C95 /* [CP] Check Pods Manifest.lock */,
 				0C75367B28E2E39E00970C4B /* Sources */,
 				0C75369928E2E3CF00970C4B /* Embed Frameworks */,
 				0C75367C28E2E39E00970C4B /* Frameworks */,
 				0C75367D28E2E39E00970C4B /* Resources */,
-				F0FE82872D3A4BF2D4CDF29D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,48 +172,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		7993D5BE6ACD9369645A4C95 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Basic-Video-Chat-Metal-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F0FE82872D3A4BF2D4CDF29D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Basic-Video-Chat-Metal/Pods-Basic-Video-Chat-Metal-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Basic-Video-Chat-Metal/Pods-Basic-Video-Chat-Metal-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Basic-Video-Chat-Metal/Pods-Basic-Video-Chat-Metal-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C75367B28E2E39E00970C4B /* Sources */ = {
@@ -372,7 +312,6 @@
 		};
 		0C75369328E2E39F00970C4B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5324A269B6EB83682DF6470D /* Pods-Basic-Video-Chat-Metal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -410,7 +349,6 @@
 		};
 		0C75369428E2E39F00970C4B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CF96710604057BE7317AF92 /* Pods-Basic-Video-Chat-Metal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
