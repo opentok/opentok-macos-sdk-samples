@@ -565,16 +565,12 @@ static void update_playout_delay(OTDefaultAudioDeviceMac* device) {
     device->_playoutDelayMeasurementCounter++;
         
     if (device->_playoutDelayMeasurementCounter >= 100) {
-            uint32_t tempPlayoutDelay = 0;
-            tempPlayoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * 1000000);
+            device->_playoutDelay = 0;
+            device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * 1000000);
             // To ms
-            tempPlayoutDelay = (tempPlayoutDelay - 500) / 1000;
-            if(tempPlayoutDelay <= 1000)
+            if(device->_playoutDelay >= 500)
             {
-                device->_playoutDelay = tempPlayoutDelay;
-                device->_playoutDelayMeasurementCounter = 0;
-            }else{
-                device->_playoutDelayMeasurementCounter = 100;
+            	device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
             }
             // Reset counter
             device->_playoutDelayMeasurementCounter = 0;
