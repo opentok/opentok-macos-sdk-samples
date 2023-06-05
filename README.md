@@ -54,3 +54,19 @@ application with two clients. If you're just getting started with OpenTok,
 this is where you should start. 
 Notice the video renderer class is written with Metal framework.
 
+
+## Adding the OpenTok library
+
+In this example the OpenTok iOS SDK was not included as a dependency,
+you can do it through Swift Package Manager or Cocoapods.
+
+
+### Swift Package Manager
+To add a package dependency to your Xcode project, you should select 
+*File* > *Swift Packages* > *Add Package Dependency* and enter the repository URL:
+`https://github.com/Vonage/client-sdk-video-macos.git`.
+
+
+### Cocoapods
+To use CocoaPods to add the OpenTok library and its dependencies into this sample app
+simply open Terminal, navigate to the root directory of the project and run: `pod install`.
