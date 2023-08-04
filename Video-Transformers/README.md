@@ -123,29 +123,3 @@ otc_video_transformer *video_transformers[] = {
 
 otc_publisher_set_video_transformers(publisher, video_transformers, 1);
 ```
-
-## Creating a custom audio transformer
-
-Use the <a href="/developer/sdks/mac/reference/media__transformer_8h.html#a15c109155502af31df8f61be5174f202"><code>otc_audio_transformer_create()</code></a>
-function to create an audio transformer.
-
-* Set the `type` parameter to `OTC_MEDIA_TRANSFORMER_TYPE_CUSTOM` (defined in the SDK).
-  This indicates that you are creating a custom transformer. (In this beta version, no
-  predefined audio transformers from the Vonage Media Library are supported.)
-* Set the `name` parameter to a unique name for your transformer.
-* Set the `properties` parameter `NULL`. (This parameter is used when using a transformer from
-  the Vonage Media Library.)
-* Set the `callback` parameter to a callback function. This function is an instance of
-  the `audio_transform_callback` type, defined in the SDK. This function has two parameters:
-  `user_data` -- see the next parameter -- and `frame` -- an instance of type
-  of type `otc_audio_data` (defined in the SDK) passed into the callback function when
-  there is audio data available. Transform the audio data in the callback function.
-* Set the `userData` parameter (optional) to user data to be passed in the callback function.
-
-Here is a basic example:
-
-```c
-void on_transform_audio(void* user_data, struct otc_video_frame* frame)
-{
-    // implement transformer on the otc_audio_data audio data
-}
