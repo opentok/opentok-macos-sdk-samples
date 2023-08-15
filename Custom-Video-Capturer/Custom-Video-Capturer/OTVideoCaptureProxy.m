@@ -55,8 +55,7 @@ otc_bool otc_video_capture_init(const otc_video_capturer *capturer,
                                 void *user_data)
 {
     NSLog(@"Init called");
-    struct otc_video_capturer_callbacks *capturer_cb = (struct otc_video_capturer_callbacks *)capturer;
-    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(capturer_cb->user_data);
+    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(user_data);
     proxy.otcVideoCapturer = capturer;
     [proxy initCapture];
     return true;
@@ -65,8 +64,7 @@ otc_bool otc_video_capture_init(const otc_video_capturer *capturer,
 otc_bool otc_video_capture_release(const otc_video_capturer *capturer,
                                    void *user_data)
 {
-    struct otc_video_capturer_callbacks *capturer_cb = (struct otc_video_capturer_callbacks *)capturer;
-    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(capturer_cb->user_data);
+    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(user_data);
     [proxy releaseCapture];
     return true;
 }
@@ -75,8 +73,7 @@ otc_bool otc_video_capture_start(const otc_video_capturer *capturer,
                                  void *user_data)
 {
     NSLog(@"Start called");
-    struct otc_video_capturer_callbacks *capturer_cb = (struct otc_video_capturer_callbacks *)capturer;
-    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(capturer_cb->user_data);
+    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(user_data);
     bool result = [proxy startCapture];
     return (result == 0);
 }
@@ -84,8 +81,7 @@ otc_bool otc_video_capture_start(const otc_video_capturer *capturer,
 otc_bool otc_video_capture_stop(const otc_video_capturer *capturer,
                                 void *user_data)
 {
-    struct otc_video_capturer_callbacks *capturer_cb = (struct otc_video_capturer_callbacks *)capturer;
-    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(capturer_cb->user_data);
+    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(user_data);
     bool result = [proxy stopCapture];
     return (result == 0);
 }
@@ -95,8 +91,7 @@ otc_bool otc_video_capture_settings(const otc_video_capturer *capturer,
                                     struct otc_video_capturer_settings *settings)
 {
     NSLog(@"Settings called");
-    struct otc_video_capturer_callbacks *capturer_cb = (struct otc_video_capturer_callbacks *)capturer;
-    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(capturer_cb->user_data);
+    OTMacDefaultVideoCapturer* proxy = (__bridge OTMacDefaultVideoCapturer *)(user_data);
     OTVideoFormat* videoFormat = [[OTVideoFormat alloc] init];
     int32_t result = [proxy captureSettings:videoFormat];
     return (result == 0);
