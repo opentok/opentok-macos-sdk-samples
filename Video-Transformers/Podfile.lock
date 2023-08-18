@@ -1,0 +1,16 @@
+PODS:
+  - VonageClientSDKVideoMacOS (2.25.3)
+
+DEPENDENCIES:
+  - VonageClientSDKVideoMacOS (= 2.25.3)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - VonageClientSDKVideoMacOS
+
+SPEC CHECKSUMS:
+  VonageClientSDKVideoMacOS: 89b1beb2a223688af870f8e2f0a1490397c66a8a
+
+PODFILE CHECKSUM: 1d494927ce3a874988b96043647673de1bb28642
+
+COCOAPODS: 1.11.3
