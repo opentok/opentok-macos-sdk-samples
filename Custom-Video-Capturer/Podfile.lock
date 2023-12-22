@@ -1,20 +1,16 @@
 PODS:
-  - VonageClientSDKVideoMacOS (2.24.0):
-    - VonageWebRTC (= 99.2.39)
-  - VonageWebRTC (99.2.39)
+  - VonageClientSDKVideoMacOS (2.27.0)
 
 DEPENDENCIES:
-  - VonageClientSDKVideoMacOS (= 2.24.0)
+  - VonageClientSDKVideoMacOS (= 2.27.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - VonageClientSDKVideoMacOS
-    - VonageWebRTC
 
 SPEC CHECKSUMS:
-  VonageClientSDKVideoMacOS: b4dbaed5dff00ee302ab84ac366d31eb9bd9c812
-  VonageWebRTC: 4b57187170ef4ea435006e932600646a0521d6b0
+  VonageClientSDKVideoMacOS: b2a13160e24c46b02a1a4ab1acbe8363bfc41161
 
 PODFILE CHECKSUM: d8d5679275777a48be2c8ca0d5e774eb1e7b4bf4
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
