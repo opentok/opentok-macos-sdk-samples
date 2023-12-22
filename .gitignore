@@ -51,4 +51,5 @@ DerivedData
 *.xccheckout
 
 #CocoaPods
+Podfile.lock
 Pods
