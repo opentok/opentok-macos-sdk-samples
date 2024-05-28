@@ -10,7 +10,7 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 
-#define kSampleRate 44100
+#define kSampleRate 48000
 
 #define OT_ENABLE_AUDIO_DEBUG 1
 #define RETRY_COUNT 5
@@ -36,7 +36,7 @@ static OSStatus playout_cb(void *ref_con,
                            UInt32 bus_num,
                            UInt32 num_frames,
                            AudioBufferList *data);
-
+static NSInteger channelState;
 @interface OTDefaultAudioDeviceMac ()
 - (BOOL) setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
 @end
@@ -59,6 +59,9 @@ static OSStatus playout_cb(void *ref_con,
     
     /* synchronize all access to the audio subsystem */
     dispatch_queue_t _safetyQueue;
+    
+    NSTimer *channelTimer;
+
     
 @public
     id _audioBus;
@@ -83,37 +86,10 @@ static OSStatus playout_cb(void *ref_con,
     if (self) {
         _audioFormat = [[OTAudioFormat alloc] init];
         _audioFormat.sampleRate = kSampleRate;
-        _audioFormat.numChannels = 1;
+        _audioFormat.numChannels = 2;
         _safetyQueue = dispatch_queue_create("ot-audio-driver",
                                              DISPATCH_QUEUE_SERIAL);
         _restartRetryCount = 0;
-        
-        struct AudioObjectPropertyAddress devicePropertyAddress;
-        devicePropertyAddress.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
-        devicePropertyAddress.mScope = kAudioObjectPropertyScopeGlobal;
-        devicePropertyAddress.mElement = kAudioObjectPropertyElementMain;
-        
-        AudioObjectPropertyListenerBlock audioObjectPropertyListenerBlock = ^(UInt32 numberAddresses, const AudioObjectPropertyAddress* addresses) {
-            NSLog(@"AudioObjectPropertyListenerBlock");
-            UInt32 index = 0;
-            while (index < numberAddresses) {
-                AudioObjectPropertyAddress address = addresses[index];
-                switch (address.mSelector) {
-                    case kAudioHardwarePropertyDefaultOutputDevice:
-                        [self setDefaultOutput];
-                        break;
-                    default:
-                        break;
-                }
-                index++;
-            }
-        };
-        
-        OSStatus status = AudioObjectAddPropertyListenerBlock(kAudioObjectSystemObject, &devicePropertyAddress, nil, audioObjectPropertyListenerBlock);
-        if (status != noErr) {
-            NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:nil];
-            NSLog(@"error: %@", error.localizedDescription);
-        }
     }
     return self;
 }
@@ -122,12 +98,25 @@ static OSStatus playout_cb(void *ref_con,
 {
     _audioBus = audioBus;
     _audioFormat = [[OTAudioFormat alloc] init];
-    _audioFormat.sampleRate = kSampleRate;
-    _audioFormat.numChannels = 1;
+    _audioFormat.sampleRate =  kSampleRate;
+    _audioFormat.numChannels = 2;
+    
+    channelState = 1;  // Start with state 1
+    channelTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                                         target:self
+                                                       selector:@selector(updateChannelState)
+                                                       userInfo:nil
+                                                        repeats:YES];
     
     return YES;
 }
+- (void)updateChannelState {
+    channelState = (channelState % 6) + 1;
+    NSLog(@"Channel State Updated to: %ld", (long)channelState);
 
+    // Implement any additional functionality you need when the channel state changes
+    // For example, update audio routing or processing here
+}
 - (void)dealloc
 {
     [self removeObservers];
@@ -412,58 +401,6 @@ static bool CheckError(OSStatus error, NSString* function) {
     }
 }
 
-- (void) onRouteChangeEvent:(NSNotification *) notification
-{
-    OT_AUDIO_DEBUG(@"onRouteChangeEvent %@",notification);
-    dispatch_async(_safetyQueue, ^() {
-        [self handleRouteChangeEvent:notification];
-    });
-}
-
-- (void) handleRouteChangeEvent:(NSNotification *) notification
-{
-    NSDictionary *interruptionDict = notification.userInfo;
-    NSInteger routeChangeReason =
-    [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
-     integerValue];
-
-    // We'll receive a routeChangedEvent when the audio unit starts; don't
-    // process events we caused internally. And when switching calls using CallKit,
-    // iOS system generates a category change which we should Ignore!
-    if (AVAudioSessionRouteChangeReasonRouteConfigurationChange == routeChangeReason ||
-        AVAudioSessionRouteChangeReasonCategoryChange == routeChangeReason)
-    {
-        return;
-    }
-
-    if(routeChangeReason == AVAudioSessionRouteChangeReasonOverride ||
-       routeChangeReason == AVAudioSessionRouteChangeReasonCategoryChange)
-    {
-        
-    }
-    
-    @synchronized(self) {
-        // We've made it here, there's been a legit route change.
-        // Restart the audio units with correct sample rate
-        _isResetting = YES;
-        
-        if (recording)
-        {
-            [self stopCapture];
-            [self disposeRecordUnit];
-            [self startCapture];
-        }
-        
-        if (playing)
-        {
-            [self stopRendering];
-            [self disposePlayoutUnit];
-            [self startRendering];
-        }
-        
-        _isResetting = NO;
-    }
-}
 
 
 - (void) removeObservers
@@ -491,73 +428,87 @@ static void update_recording_delay(OTDefaultAudioDeviceMac* device) {
     device->_recordingDelay = device->_recordingDelayHWAndOS;
 }
 
+#define TONE_FREQUENCY 440
+#define M_TAU 2.0 * M_PI
+
+
 static OSStatus recording_cb(void *ref_con,
                              AudioUnitRenderActionFlags *action_flags,
                              const AudioTimeStamp *time_stamp,
                              UInt32 bus_num,
-                             UInt32 num_frames,
-                             AudioBufferList *data)
+                             UInt32 inNumberFrames,
+                             AudioBufferList *ioData)
 {
     OTDefaultAudioDeviceMac *dev = (__bridge OTDefaultAudioDeviceMac*) ref_con;
-    
-    if (!dev->buffer_list || num_frames > dev->buffer_num_frames)
-    {
-        if (dev->buffer_list) {
-            free(dev->buffer_list->mBuffers[0].mData);
-            free(dev->buffer_list);
-        }
-        
-        dev->buffer_list =
-        (AudioBufferList*)malloc(sizeof(AudioBufferList) + sizeof(AudioBuffer));
-        dev->buffer_list->mNumberBuffers = 1;
-        dev->buffer_list->mBuffers[0].mNumberChannels = 1;
-        
-        dev->buffer_list->mBuffers[0].mDataByteSize = num_frames*sizeof(UInt16);
-        dev->buffer_list->mBuffers[0].mData = malloc(num_frames*sizeof(UInt16));
-        
-        dev->buffer_num_frames = num_frames;
-        dev->buffer_size = dev->buffer_list->mBuffers[0].mDataByteSize;
-    }
-    
-    OSStatus status;
-    status = AudioUnitRender(dev->recording_voice_unit,
-                             action_flags,
-                             time_stamp,
-                             1,
-                             num_frames,
-                             dev->buffer_list);
-    
-    if (status != noErr) {
-        CheckError(status, @"AudioUnitRender");
-    }
+ 
+  
     
     if (dev->recording) {
+        static float theta;
+
+        // Assuming ioData has only one buffer for interleaved data
+        SInt16 *buffer = (SInt16 *)ioData->mBuffers[0].mData;
+        for (UInt32 frame = 0; frame < inNumberFrames; ++frame) {
+            if (channelState == 1) {
+                // Write left channel
+                buffer[2 * frame] = (SInt16)(sin(theta) * 32767.0f);
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = 0;
+            } else if (channelState == 2) {
+                // Write left channel
+                buffer[2 * frame] = 0;
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = 0; //0;
+            } else if (channelState == 3) {
+                // Write left channel
+                buffer[2 * frame] = (SInt16)(sin(theta) * 32767.0f);;
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = (SInt16)(sin(theta) * 32767.0f);
+            }else if (channelState == 4) {
+                // Write left channel
+                buffer[2 * frame] = 0;
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = 0;
+            } else if (channelState == 5) {
+                // Write left channel
+                buffer[2 * frame] = 0;
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = (SInt16)(sin(theta) * 32767.0f);
+            } else if (channelState == 6) {
+                // Write left channel
+                buffer[2 * frame] = 0;
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = 0;
+            }
+ 
+
+            // Increment theta for the tone frequency
+            theta += M_TAU * TONE_FREQUENCY / kSampleRate;
+            if (theta > M_TAU) {
+                theta -= M_TAU;
+            }
+        }
         
-        // Some sample code to generate a sine wave instead of use the mic
-        //        static double startingFrameCount = 0;
-        //        double j = startingFrameCount;
-        //        double cycleLength = kSampleRate. / 880.0;
-        //        int frame = 0;
-        //        for (frame = 0; frame < num_frames; ++frame)
-        //        {
-        //            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
-        //            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
-        //            (data)[frame] = (sample * 32767.0f);
-        //            j += 1.0;
-        //            if (j > cycleLength)
-        //                j -= cycleLength;
-        //        }
-        //        startingFrameCount = j;
-        [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
-                         numberOfSamples:num_frames];
+  
+        // Write the captured data to the audio bus
+        [dev->_audioBus writeCaptureData:buffer
+                          numberOfSamples:inNumberFrames]; // multiply by 2 because each frame now includes two samples (left and right)
+        // Access the interleaved buffer
+        SInt16 * interleavedBuffer = (SInt16 *)ioData->mBuffers[0].mData;
+
+        // Set all samples to zero for both left and right channels
+        for (UInt32 frame = 0; frame < inNumberFrames; ++frame) {
+            interleavedBuffer[2 * frame] = 0;      // Left channel
+            interleavedBuffer[2 * frame + 1] = 0;  // Right channel
+        }
+
     }
-    // some ocassions, AudioUnitRender only renders part of the buffer and then next
-    // call to the AudioUnitRender fails with smaller buffer.
-    if (dev->buffer_size != dev->buffer_list->mBuffers[0].mDataByteSize)
-        dev->buffer_list->mBuffers[0].mDataByteSize = dev->buffer_size;
+
+//    // Ensure the buffer size remains constant
+//    if (dev->buffer_size != ioData->mBuffers[0].mDataByteSize)
+//        ioData->mBuffers[0].mDataByteSize = dev->buffer_size;
     
     update_recording_delay(dev);
-    
     return noErr;
 }
 
@@ -586,10 +537,27 @@ static OSStatus playout_cb(void *ref_con,
     OTDefaultAudioDeviceMac *dev = (__bridge OTDefaultAudioDeviceMac*) ref_con;
     
     if (!dev->playing) { return 0; }
-    
+
+    //
+//    static float theta;
+//
+//     SInt16 *left = (SInt16 *)buffer_list->mBuffers[0].mData;
+//     SInt16 *right = (SInt16 *)buffer_list->mBuffers[1].mData;
+//     for (UInt32 frame = 0; frame < num_frames; ++frame) {
+//         left[frame] =  (SInt16)(sin(theta) * 32767.0f);
+//         right[frame] = 0; //(SInt16)(sin(theta) * 32767.0f);
+//         theta        swx3e += M_TAU * TONE_FREQUENCY / SAMPLE_RATE;
+//         if (theta > M_TAU) {
+//             theta -= M_TAU;
+//         }
+//     }
+
+    //
     uint32_t count =
     [dev->_audioBus readRenderData:buffer_list->mBuffers[0].mData
-                   numberOfSamples:num_frames];
+                   numberOfSamples:  num_frames];
+ 
+
     
     if (count != num_frames) {
         //TODO: Not really an error, but conerning. Network issues?
@@ -603,89 +571,76 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
 {
     OSStatus result;
-    
     mach_timebase_info(&info);
     
-    UInt32 bytesPerSample = sizeof(SInt16);
-    stream_format.mFormatID    = kAudioFormatLinearPCM;
-    stream_format.mFormatFlags =
-    kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
-    stream_format.mBytesPerPacket  = bytesPerSample;
+    stream_format.mFormatID = kAudioFormatLinearPCM;
+    stream_format.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked; // Ensure no non-interleaved flag is set
+    stream_format.mSampleRate = kSampleRate;
+    stream_format.mChannelsPerFrame = 2;
+    stream_format.mBitsPerChannel = 16;
+    stream_format.mBytesPerFrame = (stream_format.mBitsPerChannel / 8) * stream_format.mChannelsPerFrame;
     stream_format.mFramesPerPacket = 1;
-    stream_format.mBytesPerFrame   = bytesPerSample;
-    stream_format.mChannelsPerFrame= 1;
-    stream_format.mBitsPerChannel  = 8 * bytesPerSample;
-    stream_format.mSampleRate = (Float64) kSampleRate;
-    
+    stream_format.mBytesPerPacket = stream_format.mBytesPerFrame * stream_format.mFramesPerPacket;
+      
     AudioComponentDescription audio_unit_description;
     audio_unit_description.componentType = kAudioUnitType_Output;
-    audio_unit_description.componentSubType = isPlayout ? kAudioUnitSubType_DefaultOutput : kAudioUnitSubType_VoiceProcessingIO;
-    audio_unit_description.componentManufacturer = 0;
+    audio_unit_description.componentSubType = isPlayout ? kAudioUnitSubType_DefaultOutput : kAudioUnitSubType_DefaultOutput;
+    audio_unit_description.componentManufacturer = kAudioUnitManufacturer_Apple ;
     audio_unit_description.componentFlags = 0;
     audio_unit_description.componentFlagsMask = 0;
     
-    AudioComponent found_vpio_unit_ref =
-    AudioComponentFindNext(NULL, &audio_unit_description);
+    AudioComponent found_vpio_unit_ref = AudioComponentFindNext(NULL, &audio_unit_description);
     
-    result = AudioComponentInstanceNew(found_vpio_unit_ref, voice_unit);
-    
-    if (CheckError(result, @"AudioDevice - setupAudioUnit.AudioComponentInstanceNew")) {
-        return NO;
-    }
+    AudioComponentInstanceNew(found_vpio_unit_ref, voice_unit);
     
     if (!isPlayout)
     {
-        UInt32 enable_input = 1;
-        AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
-                             kAudioUnitScope_Input, kInputBus, &enable_input,
-                             sizeof(enable_input));
-        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
-                             kAudioUnitScope_Output, kInputBus,
-                             &stream_format, sizeof (stream_format));
+        
         AURenderCallbackStruct input_callback;
         input_callback.inputProc = recording_cb;
         input_callback.inputProcRefCon = (__bridge void *)(self);
         
-        AudioUnitSetProperty(*voice_unit,
-                             kAudioOutputUnitProperty_SetInputCallback,
-                             kAudioUnitScope_Global, kInputBus, &input_callback,
-                             sizeof(input_callback));
-        UInt32 flag = 0;
-        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_ShouldAllocateBuffer,
-                             kAudioUnitScope_Output, kInputBus, &flag,
-                             sizeof(flag));
-        // Disable Output on record
-        // see OPENTOK-34229
-        UInt32 enable_output = 0;
-        AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
-                             kAudioUnitScope_Output, kOutputBus, &enable_output,
-                             sizeof(enable_output));
+        CheckError(AudioUnitSetProperty(*voice_unit,
+                                        kAudioUnitProperty_SetRenderCallback,
+                             kAudioUnitScope_Input, kOutputBus, &input_callback,
+                                        sizeof(input_callback)),@"error 3");
+
+        CheckError(AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
+                             kAudioUnitScope_Input, kOutputBus,
+                                        &stream_format, sizeof (stream_format)),@"playout AudioUnitSetProperty error");
+
+
         
     } else
     {
-        UInt32 enable_output = 1;
-        AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
-                             kAudioUnitScope_Output, kOutputBus, &enable_output,
-                             sizeof(enable_output));
-        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
-                             kAudioUnitScope_Input, kOutputBus,
-                             &stream_format, sizeof (stream_format));
-        // Disable Input on playout
-        // see OPENTOK-34229
-        UInt32 enable_input = 0;
-        AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
-                             kAudioUnitScope_Input, kInputBus, &enable_input,
-                             sizeof(enable_input));
 
-        [self setPlayOutRenderCallback:*voice_unit];
+
+        CheckError(AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
+                             kAudioUnitScope_Input, kOutputBus,
+                                        &stream_format, sizeof (stream_format)),@"error b");
+        AURenderCallbackStruct render_callback;
+        render_callback.inputProc = playout_cb;;
+        render_callback.inputProcRefCon = (__bridge void *)(self);
+            CheckError(AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_SetRenderCallback,
+                                     kAudioUnitScope_Input, kOutputBus, &render_callback,
+                                            sizeof(render_callback)),@"error last");
     }
     
     Float64 f64 = 0;
     UInt32 size = sizeof(f64);
+
+    
     OSStatus latency_result = AudioUnitGetProperty(*voice_unit,
                                                    kAudioUnitProperty_Latency,
                                                    kAudioUnitScope_Global,
                                                    0, &f64, &size);
+    
+    
+
+   
+
+    
+    
     if (!isPlayout)
     {
         _recording_AudioUnitProperty_Latency = (0 == latency_result) ? f64 : 0;
@@ -695,20 +650,15 @@ static OSStatus playout_cb(void *ref_con,
         _playout_AudioUnitProperty_Latency = (0 == latency_result) ? f64 : 0;
     }
     
+    
     // Initialize the Voice-Processing I/O unit instance.
     result = AudioUnitInitialize(*voice_unit);
-    
-    // This patch is pickedup from WebRTC audio implementation and
-    // is kind of a workaround. We encountered AudioUnitInitialize
-    // failure in iOS 13 with Callkit while switching calls. The failure
-    // code is not public so we can't do much.
     int failed_initalize_attempts = 0;
     int kMaxInitalizeAttempts = 5;
     while (result != noErr) {
         ++failed_initalize_attempts;
         if (failed_initalize_attempts == kMaxInitalizeAttempts) {
             // Max number of initialization attempts exceeded, hence abort.
-            OT_AUDIO_DEBUG(@"AudioDevice - AudioUnit initialize failed %d",result);
             return false;
         }
         [NSThread sleepForTimeInterval:0.1f];
@@ -718,20 +668,9 @@ static OSStatus playout_cb(void *ref_con,
     if (CheckError(result, @"setupAudioUnit.AudioUnitInitialize")) {
         return NO;
     }
-    
     return YES;
 }
 
-- (BOOL)setPlayOutRenderCallback:(AudioUnit)unit
-{
-    AURenderCallbackStruct render_callback;
-    render_callback.inputProc = playout_cb;;
-    render_callback.inputProcRefCon = (__bridge void *)(self);
-        OSStatus result = AudioUnitSetProperty(unit, kAudioUnitProperty_SetRenderCallback,
-                                 kAudioUnitScope_Input, kOutputBus, &render_callback,
-                                 sizeof(render_callback));
-    return (result == 0);
-}
 
 - (void)setDefaultOutput
 {
