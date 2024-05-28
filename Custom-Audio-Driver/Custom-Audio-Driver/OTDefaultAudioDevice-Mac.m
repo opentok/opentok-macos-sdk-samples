@@ -111,7 +111,7 @@ static NSInteger channelState;
     return YES;
 }
 - (void)updateChannelState {
-    channelState = (channelState % 5) + 1;
+    channelState = (channelState % 6) + 1;
     NSLog(@"Channel State Updated to: %ld", (long)channelState);
 
     // Implement any additional functionality you need when the channel state changes
@@ -461,7 +461,7 @@ static OSStatus recording_cb(void *ref_con,
                 buffer[2 * frame + 1] = 0; //0;
             } else if (channelState == 3) {
                 // Write left channel
-                buffer[2 * frame] = 0;
+                buffer[2 * frame] = (SInt16)(sin(theta) * 32767.0f);;
                 // Write right channel (silenced in your original example)
                 buffer[2 * frame + 1] = (SInt16)(sin(theta) * 32767.0f);
             }else if (channelState == 4) {
@@ -470,6 +470,11 @@ static OSStatus recording_cb(void *ref_con,
                 // Write right channel (silenced in your original example)
                 buffer[2 * frame + 1] = 0;
             } else if (channelState == 5) {
+                // Write left channel
+                buffer[2 * frame] = 0;
+                // Write right channel (silenced in your original example)
+                buffer[2 * frame + 1] = (SInt16)(sin(theta) * 32767.0f);
+            } else if (channelState == 6) {
                 // Write left channel
                 buffer[2 * frame] = 0;
                 // Write right channel (silenced in your original example)
