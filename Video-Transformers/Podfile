@@ -9,4 +9,5 @@ target 'Video-Transformers' do
   project 'Video-Transformers/Video-Transformers.xcodeproj'
   use_frameworks! :linkage => :static
   pod 'VonageClientSDKVideoMacOS', OpenTokSDKVersion
+  pod 'VonageClientSDKVideoMacOSTransformers' , OpenTokSDKVersion
 end
