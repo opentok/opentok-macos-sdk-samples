@@ -1,2 +1,2 @@
-OpenTokSDKVersion = '2.27.3'
+OpenTokSDKVersion = '2.28.0'
 MinMacOSVersion = '10.15.0'
