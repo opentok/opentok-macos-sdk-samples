@@ -1,6 +1,6 @@
 //
 //  OpenTokWrapper.cpp
-//  Video-Transformers
+//  Media-Transformers
 //
 //  Created by Jerónimo Valli on 11/16/22.
 //
@@ -258,10 +258,11 @@ void on_transform_logo(void* user_data, struct otc_video_frame* frame)
 }
 
 /**
- * Variables holding video transformers
+ * Variables holding media transformers
  */
 otc_video_transformer *background_blur;
 otc_video_transformer *logo_watermark;
+otc_audio_transformer *ns;
 
 /**
  * Disable Video Transformers
@@ -271,10 +272,13 @@ static void disable_tranformers(otc_publisher *publisher) {
     otc_video_transformer_delete(background_blur);
     otc_video_transformer_delete(logo_watermark);
     otc_publisher_set_video_transformers(publisher, NULL, NULL);
+    
+    otc_audio_transformer_delete(ns);
+    otc_publisher_set_audio_transformers(publisher, NULL, NULL);
 }
 
 /**
- * Enable Video Transformers
+ * Enable Media Transformers
  */
 static void enable_tranformers(otc_publisher *publisher) {
 
@@ -291,6 +295,16 @@ static void enable_tranformers(otc_publisher *publisher) {
         logo_watermark};
 
     otc_publisher_set_video_transformers(publisher, video_transformers, sizeof(video_transformers) / sizeof(video_transformers[0]));
+    
+    // Create noise suppression from enum
+    ns = otc_audio_transformer_create(OTC_MEDIA_TRANSFORMER_TYPE_VONAGE, "NoiseSuppression","", NULL, NULL);
+    
+    // Array of audio transformers
+    otc_audio_transformer *audio_transformers[] = {
+        /* Vonage Transformer - Noise Suppression */
+        ns};
+    
+    otc_publisher_set_audio_transformers(publisher, audio_transformers, sizeof(audio_transformers) / sizeof(audio_transformers[0]));
 }
 
 @implementation OpenTokWrapper {

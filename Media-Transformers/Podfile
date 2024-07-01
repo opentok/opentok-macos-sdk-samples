@@ -3,10 +3,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :osx, MinMacOSVersion
 
-workspace 'Video-Transformers.xcworkspace'
+workspace 'Media-Transformers.xcworkspace'
 
-target 'Video-Transformers' do
-  project 'Video-Transformers/Video-Transformers.xcodeproj'
+target 'Media-Transformers' do
+  project 'Media-Transformers/Media-Transformers.xcodeproj'
   use_frameworks! :linkage => :static
   pod 'VonageClientSDKVideoMacOS', OpenTokSDKVersion
   pod 'VonageClientSDKVideoMacOSTransformers' , OpenTokSDKVersion

@@ -1,6 +1,6 @@
 //
 //  OpenTokWrapper.h
-//  Video-Transformers
+//  Media-Transformers
 //
 //  Created by Jerónimo Valli on 11/16/22.
 //
