@@ -217,12 +217,30 @@ void setupPublisher(void * userdata){
     publisher_callbacks.user_data = userdata;
     publisher_callbacks.on_stream_destroyed = publisher_on_stream_destroyed;
     
-    publisher = otc_publisher_new("Mac Publisher", NULL, &publisher_callbacks);
-    NSLog(@"Publisher created : %p",publisher);
+    otc_publisher_settings* publisher_settings = otc_publisher_settings_new();
+    if (publisher_settings == NULL) {
+        NSLog(@"Could not create OpenTok publisher settings successfully");
+        return;
+    }
+    otc_publisher_settings_set_name(publisher_settings, "opentok-macos-meet-screen-share");
+    otc_publisher_settings_set_disable_audio_processing(publisher_settings, OTC_TRUE);
+    otc_publisher_settings_set_video_track( publisher_settings, OTC_FALSE);
+    otc_publisher_settings_set_stereo(publisher_settings, OTC_TRUE);
+    
+    publisher = otc_publisher_new_with_settings(&publisher_callbacks,
+                                                publisher_settings);
 }
 
 void publisher_on_stream_created(otc_publisher *publisher, void *user_data, const otc_stream *stream) {
-    
+   // return;
+    struct otc_subscriber_callbacks callbacks = {0};
+    callbacks.on_render_frame = subscriber_on_render_frame;
+    callbacks.on_connected = subscriber_on_connected;
+    callbacks.on_video_disabled = subscriber_on_video_disabled;
+    callbacks.on_video_enabled = subscriber_on_video_enabled;
+    callbacks.user_data = user_data;
+    otc_subscriber *subscriber= otc_subscriber_new(stream, &callbacks);
+    otc_session_subscribe(session, subscriber);
 }
 
 void publisher_on_stream_destroyed(otc_publisher *publisher, void *user_data, const otc_stream *stream){
