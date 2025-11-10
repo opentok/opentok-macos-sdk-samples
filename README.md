@@ -1,3 +1,10 @@
+> ## ⚠️ This Library has been deprecated in favour of the [Opentok iOS SDK Samples](https://github.com/opentok/opentok-ios-sdk-samples) ⚠️
+> 
+> ### Product deprecation notice
+> 
+> The macOS SDK is being deprecated on 31st December, 2025. Existing applications will continue to work uninterrupted until this date.
+> Customers looking to build for macOS natively, can use JS SDK with Electron, or contact your account managers or support for help.
+
 # OpenTok MacOS SDK Samples
 
 <img src="https://assets.tokbox.com/img/vonage/Vonage_VideoAPI_black.svg" height="48px" alt="Tokbox is now known as Vonage" />
