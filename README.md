@@ -2,8 +2,8 @@
 > 
 > ### Product deprecation notice
 > 
-> The macOS SDK is being deprecated on 31st December, 2025. Existing applications will continue to work uninterrupted until this date.
-> Customers looking to build for macOS natively, can use JS SDK with Electron, or contact your account managers or support for help.
+> Version 2.31 is the final release, and no new versions will be developed going forward. Support for this SDK will continue until version 2.31 reaches end of support. For the support timeline, please refer to the lifecycle documentation <a href="https://tokbox.com/developer/guides/enterprise/#supported-versions">here</a>. After this period, the SDK will reach end of life (EOL) and will no longer receive maintenance or support.
+> Customers building natively for macOS can find references to relevant solutions <a href="https://tokbox.com/developer/sdks/mac/">here</a>.
 
 # OpenTok MacOS SDK Samples
 
