@@ -1,3 +1,9 @@
+⚠️ **Product deprecation notice** ⚠️
+ 
+Version 2.31 is the final release, and no new versions will be developed going forward. Support for this SDK will continue until version 2.31 reaches end of support. For the support timeline, please refer to the lifecycle documentation [here](https://tokbox.com/developer/guides/enterprise/#supported-versions). After this period, the SDK will reach end of life (EOL) and will no longer receive maintenance or support.
+
+For more information, please visit [this page](https://tokbox.com/developer/sdks/mac/).
+
 # OpenTok MacOS SDK Samples
 
 <img src="https://assets.tokbox.com/img/vonage/Vonage_VideoAPI_black.svg" height="48px" alt="Tokbox is now known as Vonage" />
